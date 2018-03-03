@@ -6,7 +6,7 @@ html{
 #hero{
   position: fixed;
   top: 535px;
-  left: 500px;
+  left: 49%;
   -moz-transform: scaleX(-1);
    -o-transform: scaleX(-1);
    -webkit-transform: scaleX(-1);
@@ -67,7 +67,7 @@ html{
   width: 30px;
 }
 .fireball{
-  margin-top: 0px;
+  margin-top: 370px;
   width: 30px;
   transform:rotate(90deg);
 }
@@ -95,5 +95,15 @@ html{
   width:150px;
 }
 .info p {
-  color: lightgreen;
+color:lightgreen;
+}
+.how-to{
+  text-align: center;
+  margin:0 auto;
+}
+.spellbook{
+  position: absolute;
+  width: 22px;
+  margin-top:392px;
+  left:500px;
 }

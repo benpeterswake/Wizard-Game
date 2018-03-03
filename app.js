@@ -53,8 +53,7 @@ const startGame = () => {
     setTimeout(()=>{
       $('#mark').show();
       $('#hero').show('slow');
-    }, 4000)
-
+    }, 100);
     //Show opening text
     const $div = $('<div>').addClass('start').text('You awake in a field...');
     $div.show('slow');
@@ -62,36 +61,56 @@ const startGame = () => {
       $div.text('..with no memory of how you got there.');
     },2500);
     setTimeout(() => {
+      $div.text('In the distance you see a forrest and a mountain range...');
+    },7500);
+    setTimeout(() => {
+      $div.text('..Where are you? And what happened?!');
+    },11500);
+    setTimeout(() => {
+      $div.text('You need to look around and see if you can find any clues..');
+    },14500);
+    setTimeout(() => {
       $div.hide('slow');
       $('#mark').hide('slow');
       displayInfo();
-    },7000);
+      displayClues();
+    },19500);
+
     $('body').prepend($div);
   });
 }
 
-const battle1 = () => {
-  skully.generateEnemy(15000);
-  skully2.generateEnemy(17000);
-}
+
 
 //display the user info bar at top of screen
 const displayInfo = () => {
     const $infobar = $('<div>').addClass('info');
     const $name = $('<h3>');
     const $health = $('<p>');
+    const $playbar = $('<div>').addClass('how-to');
     const $controls = $('<h3>');
-    const $attackbtn = $('<p>');
+    // const $attackbtn = $('<p>');
     const $defendbtn = $('<p>');
     $name.text(player.name);
     $health.text('Health: ' + player.health);
     $controls.text('How to play:');
-    $attackbtn.text('Press A: (Attack) cast fireball');
-    $defendbtn.text('Press Arrows: movement');
+    // $attackbtn.text('Press A: (Attack) cast fireball');
+    $defendbtn.text('Use Arrow keys to move');
+    $playbar.append($controls,$defendbtn)
     $infobar.append($name, $health);
-    $('body').prepend($infobar, $controls, $attackbtn, $defendbtn);
+    $('body').prepend($infobar, $playbar);
 }
 
+const displayClues = () => {
+  const $spellbook = $('<div>');
+  const $img = $('<img>').attr('src','images/book.png').addClass('spellbook');
+  $spellbook.append($img);
+  $img.hide();
+  $('#game-board').prepend($spellbook);
+  setTimeout(() => {
+    $img.show();
+  },300);
+}
 
 //move and attack with character
 const moveCharacter = () => {
@@ -103,6 +122,33 @@ const moveCharacter = () => {
       if(event.which == "37"){
         $hero.css('transform', 'scaleX(1)');
         $hero.animate({left: "-=8"}, 0);
+        if($('#hero').css('left') <= $('.spellbook').css('left')){
+          $('.how-to').hide();
+          $('.spellbook').css('margin-top','-120px');
+          $('.spellbook').css('left','50%')
+          $('.spellbook').css('width','80px');
+          $('.start').text('You found a spellbook!').show('slow');
+          setTimeout(() => {
+              $('.spellbook').remove();
+          },3000)
+          setTimeout(() => {
+            $('.start').text('Inside the book, you find that most the pages are empty...').show();
+          },3000);
+          setTimeout(() => {
+            $('.start').text('...You finally find a page with the header "Fireball attack."').show();
+          },8000);
+          setTimeout(() => {
+            $('.start').text('As you read, you realize that you are already fimilar with the instructions...').show();
+          },12000);
+          setTimeout(() => {
+            $('.start').text('You decide to try to cast the spell...').show();
+          },17000);
+          setTimeout(() => {
+            $('.how-to p').text('Press A to cast a fireball');
+            $('.how-to').show();
+            $('.start').hide();
+          },20000);
+        }
       }
       if(event.which == "39") {
         $hero.css('transform', 'scaleX(-1)');
@@ -120,6 +166,7 @@ const moveCharacter = () => {
       }
       //Attack with fireball
       if(event.which == "65"){
+        console.log($('.emenyImg').position());
         $hero.css('transform', 'scaleX(-1)');
         let width = ("+=" + $( window ).width() + 'px');
         let location = $hero.css('left');
@@ -153,7 +200,7 @@ const moveCharacter = () => {
            } else {
               clearInterval(collision);
            }
-        }, 10);
+        }, 50000);
 
       }
     }else if($hero.css('left') < '0px'){
@@ -176,7 +223,7 @@ const moveCharacter = () => {
             $('.defend').remove();
         }, 4000)
       }
-    }else if($hero.css('left') == (($( window ).width()-100)+'px')){
+    }else if($hero.css('left') <= (($( window ).width()-100)+'px')){
       //hero1
       if(event.which == "37"){
         $hero.css('transform', 'scaleX(-1)');
@@ -198,6 +245,10 @@ const moveCharacter = () => {
       }
     }
   });
+}
+const battle1 = () => {
+  skully.generateEnemy(15000);
+  skully2.generateEnemy(17000);
 }
 
 $(() => {
