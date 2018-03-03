@@ -44,6 +44,12 @@ html{
   padding:10px;
   width:250px;
 }
+#mark{
+  position: absolute;
+  width:60px!important;
+  margin-top: -60px;
+  margin-left:-20px;
+}
 .defend{
   float:left;
   width: 50px;
@@ -56,12 +62,12 @@ html{
 }
 .attack{
   float:left;
+  z-index: 10;
+  position: absolute;
   width: 30px;
 }
 .fireball{
-  position: fixed;
   margin-top: 0px;
-  z-index: 10;
   width: 30px;
   transform:rotate(90deg);
 }
@@ -76,6 +82,7 @@ html{
 }
 .enemyImg {
   position: absolute;
+  z-index: 5;
   width:35px;
 }
 .info{
