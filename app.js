@@ -8,11 +8,16 @@ class Hero {
 const startGame = () => {
   startCompleted = true;
   $('#createPlayer').show('slow');
+  $('#hero').hide();
   $('#button').on('click', () => {
     let name = $('#name').val()
     const player = new Hero(name);
     console.log(player);
+
+    //Hide name-input and show player
     $('#createPlayer').hide();
+    $('#hero').show('slow');
+    //Show opening text
     const $div = $('<div>').addClass('start').text('You awake in a field...');
     $div.show('slow');
     setTimeout(() => {
@@ -52,16 +57,16 @@ const moveCharacter = () => {
       }
       if(event.which == "65"){
         let width = ("+=" + $( window ).width() + 'px');
-        setTimeout(() => {
-          $('.attack').remove(1);
-        },10000);
+        let location = $hero.css('left');
+        $('#game-board .attack').eq(10).remove();
         const $attack = $('<div>').addClass('attack');
         const $img = $('<img>').attr('src','images/fire.png').addClass('fireball');
         $attack.append($img);
         $board.prepend($attack);
+        $attack.css('margin-left', location);
         $(".attack").animate({
         marginLeft: width,
-        }, 1000);
+      }, 1500);
       }
     }else if($hero.css('left') < '0px'){
       //hero1

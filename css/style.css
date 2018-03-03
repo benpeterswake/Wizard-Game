@@ -36,6 +36,9 @@ html{
   display: block;
   margin:0 auto;
 }
+#createPlayer h1{
+  text-align: center;
+}
 #game-board{
   width:100%;
 }
@@ -55,8 +58,7 @@ html{
 }
 .fireball{
   position: absolute;
-  float:left;
-  margin-top: 200px;
+  margin-top: 540px;
   width: 30px;
   transform:rotate(90deg);
 }
