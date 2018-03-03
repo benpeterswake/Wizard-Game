@@ -5,21 +5,12 @@ html{
 
 #hero{
   position: fixed;
-  top: 538px;
+  top: 535px;
   left:100px;
   -moz-transform: scaleX(-1);
    -o-transform: scaleX(-1);
    -webkit-transform: scaleX(-1);
    transform: scaleX(-1);
-}
-#hero2{
-  position: absolute;
-  top: 550px;
-  left:100px;
-  -moz-transform: scaleX(1);
-   -o-transform: scaleX(1);
-   -webkit-transform: scaleX(1);
-   transform: scaleX(1);
 }
 #hero img{
   width: 25px;
@@ -30,7 +21,7 @@ html{
 }
 #createPlayer{
   display: block;
-  margin: 10% auto;
+  margin:5% auto;
 }
 #createPlayer button, input {
   display: block;
@@ -41,6 +32,11 @@ html{
 }
 #game-board{
   width:100%;
+}
+#intro{
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
 }
 .defend{
   float:left;
@@ -57,8 +53,9 @@ html{
   width: 30px;
 }
 .fireball{
-  position: absolute;
-  margin-top: 540px;
+  position: fixed;
+  margin-top: 0px;
+  z-index: 10;
   width: 30px;
   transform:rotate(90deg);
 }
@@ -66,4 +63,21 @@ html{
   text-align: center;
   margin-top: 10%;
   font-size: 40px;
+}
+.enemy{
+  width:40px;
+  margin-top: 465px;
+}
+.enemyImg {
+  position: absolute;
+  width:35px;
+}
+.info{
+  border: 5px solid gray;
+  background-color: black;
+  border-radius: 1em;
+  padding-left: 30px;
+  line-height: 5px;
+  color:white;
+  width:150px;
 }
