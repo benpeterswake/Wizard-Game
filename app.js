@@ -61,7 +61,7 @@ const moveCharacter = () => {
     if(($hero.css('left') > '0px') && ($hero.css('left') !==  (($( window ).width()-100)+'px'))){
       //hero1
       if(event.which == "37"){
-        $hero.css('transform', 'scaleX(-1)');
+        $hero.css('transform', 'scaleX(1)');
         $hero.animate({left: "-=8"}, 0);
       }
       if(event.which == "39") {
@@ -79,6 +79,7 @@ const moveCharacter = () => {
         }, 4000);
       }
       if(event.which == "65"){
+        $hero.css('transform', 'scaleX(-1)');
         let width = ("+=" + $( window ).width() + 'px');
         let location = $hero.css('left');
         $('#game-board .attack').eq(10).remove();
