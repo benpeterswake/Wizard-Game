@@ -1,0 +1,67 @@
+html{
+  overflow:hidden;
+  background: url(../images/background.png)
+}
+
+#hero{
+  position: fixed;
+  top: 538px;
+  left:100px;
+  -moz-transform: scaleX(-1);
+   -o-transform: scaleX(-1);
+   -webkit-transform: scaleX(-1);
+   transform: scaleX(-1);
+}
+#hero2{
+  position: absolute;
+  top: 550px;
+  left:100px;
+  -moz-transform: scaleX(1);
+   -o-transform: scaleX(1);
+   -webkit-transform: scaleX(1);
+   transform: scaleX(1);
+}
+#hero img{
+  width: 25px;
+  padding:10px;
+}
+#hero2 img{
+  width: 25px;
+}
+#createPlayer{
+  display: block;
+  margin: 10% auto;
+}
+#createPlayer button, input {
+  display: block;
+  margin:0 auto;
+}
+#game-board{
+  width:100%;
+}
+.defend{
+  float:left;
+  width: 50px;
+}
+.shield{
+  display: inline-block;
+  width: 150px;
+  height: 80px;
+  margin-top: -45px;
+}
+.attack{
+  float:left;
+  width: 30px;
+}
+.fireball{
+  position: absolute;
+  float:left;
+  margin-top: 200px;
+  width: 30px;
+  transform:rotate(90deg);
+}
+.start{
+  text-align: center;
+  margin-top: 10%;
+  font-size: 40px;
+}
