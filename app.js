@@ -165,9 +165,6 @@ const findBook = () => {
       battle1();
     },30000);
   }
-  while(skully8.health === 0){
-    alert('finsihed');
-  }
 }
 //move and attack with character
 const useCharacter = () => {
@@ -316,13 +313,13 @@ const battle1 = () => {
     skully7.generateEnemy(23000);
     skully8.generateEnemy(25000);
   },12000);
-
 }
 
 $(() => {
     startGame();
     useCharacter();
-    if(skully8.health === 0){
-      alert('intro completed');
+    while(skully8.health <= 0){
+      alert('it worked')
     }
+
 });
