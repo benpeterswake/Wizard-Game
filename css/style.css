@@ -86,7 +86,7 @@ html{
 }
 .info{
   position: absolute;
-  top:5px!important;
+  top:8px!important;
   border: 5px solid gray;
   background-color: rgba(0,0,0,0.4);
   border-radius: 0.3em;
@@ -108,8 +108,14 @@ color:lightgreen;
   margin-top:25px;
   left:500px;
 }
-.enemyhealth{
-  font-size: 16px;
+.healthBar{
+  font-size: 25px;
   color:red;
   font-weight: bold;
+  margin-top: -20px;
+}
+.hit{
+  position: absolute;
+  z-index: 1;
+  width: 80px;
 }

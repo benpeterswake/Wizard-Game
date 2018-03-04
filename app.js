@@ -16,6 +16,8 @@ class Enemy {
   generateEnemy(speed){
     let start = ($( window ).width() + 'px');
     let end = ("-=" + $( window ).width() + 'px');
+    const $healthBar = $('<div>').addClass('healthBar');
+    $healthBar.text(this.health);
     this.enemy.append(this.img);
     this.enemy.css('margin-left', start);
     this.enemy.animate({
@@ -27,7 +29,11 @@ class Enemy {
   hit(){
     this.health -= 20;
     if(this.health<=0){
-      this.img.remove();
+      this.enemy.stop();
+      this.img.attr('src', 'images/hit.png').addClass('hit');
+      setTimeout(() => {
+      this.enemy.remove();
+      },500);
     }else{
       console.log('still alive');
     }
@@ -38,6 +44,13 @@ class Enemy {
 const player = new Hero();
 const skully = new Enemy();
 const skully2 = new Enemy();
+const skully3 = new Enemy();
+const skully4 = new Enemy();
+const skully5 = new Enemy();
+const skully6 = new Enemy();
+const skully7 = new Enemy();
+const skully8 = new Enemy();
+
 //Start game
 const startGame = () => {
   $('#createPlayer').show('slow');
@@ -72,7 +85,7 @@ const startGame = () => {
       $div.text('..Where are you? And what happened?!');
     },12500);
     setTimeout(() => {
-      $div.text('You need to look around and see if you can find any clues..');
+      $div.text('You need to look around and see if you can find any clues...');
     },15500);
     setTimeout(() => {
       $div.hide('slow');
@@ -84,8 +97,6 @@ const startGame = () => {
     }
   });
 }
-
-
 
 //display the user info bar at top of screen
 const displayInfo = () => {
@@ -211,6 +222,24 @@ const moveCharacter = () => {
               if(skully.health <=0 ){
                 skully2.hit();
               }
+              if(skully2.health <=0){
+                skully3.hit();
+              }
+              if(skully3.health <=0){
+                skully4.hit();
+              }
+              if(skully4.health <=0){
+                skully5.hit();
+              }
+              if(skully5.health <=0){
+                skully6.hit();
+              }
+              if(skully6.health <=0){
+                skully7.hit();
+              }
+              if(skully7.health <=0){
+                skully8.hit();
+              }
            } else {
              console.log('Nothing hit');
            }
@@ -277,6 +306,13 @@ const battle1 = () => {
     $('.how-to').show();
     skully.generateEnemy(10000);
     skully2.generateEnemy(14000);
+    skully3.generateEnemy(16000);
+    skully4.generateEnemy(17000);
+    skully5.generateEnemy(18000);
+    skully6.generateEnemy(20000);
+    skully7.generateEnemy(23000);
+    skully8.generateEnemy(25000);
+
   },14000)
 
 }
