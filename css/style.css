@@ -5,7 +5,7 @@ html{
 
 #hero{
   position: fixed;
-  top: 535px;
+  top: 533px;
   left: 49%;
   -moz-transform: scaleX(-1);
    -o-transform: scaleX(-1);
@@ -13,7 +13,7 @@ html{
    transform: scaleX(-1);
 }
 #hero img{
-  width: 25px;
+  width: 27px;
   padding:10px;
 }
 #hero2 img{
@@ -63,6 +63,7 @@ html{
 .attack{
   float:left;
   z-index: 10;
+  left: 33px;
   position: absolute;
   width: 30px;
 }
@@ -108,7 +109,7 @@ color:lightgreen;
 .spellbook{
   position: absolute;
   width: 22px;
-  margin-top:25px;
+  margin-top:23px;
   left:500px;
 }
 .healthBar{
@@ -122,4 +123,7 @@ color:lightgreen;
   z-index: 1;
   margin-top: -20px;
   width: 80px;
+}
+.herobook{
+  width:33px!important;
 }

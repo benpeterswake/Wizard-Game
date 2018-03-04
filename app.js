@@ -126,7 +126,7 @@ const displayClues = () => {
   $('#game-board').prepend($spellbook);
   setTimeout(() => {
     $img.show();
-  },700);
+  },600);
 }
 
 
@@ -137,6 +137,7 @@ const findBook = () => {
     $('.spellbook').css('left','45%')
     $('.spellbook').css('width','80px');
     $('.start').text('You found a spellbook!').show('slow');
+    $('#hero img').attr('src', 'images/herobook.png').addClass('herobook');
     setTimeout(() => {
         $('.spellbook').remove();
     },3500)
@@ -163,6 +164,9 @@ const findBook = () => {
       $('.fireball').hide();
       battle1();
     },30000);
+  }
+  while(skully8.health === 0){
+    alert('finsihed');
   }
 }
 //move and attack with character
@@ -318,5 +322,7 @@ const battle1 = () => {
 $(() => {
     startGame();
     useCharacter();
-
+    if(skully8.health === 0){
+      alert('intro completed');
+    }
 });
