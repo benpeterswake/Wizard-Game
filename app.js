@@ -243,7 +243,7 @@ const useCharacter = () => {
                 skully8.hit();
               }
               if(skully8.health <= 0){
-                localStorage.setItem('level1-completed', 'true');
+                localStorage.setItem('level1-completed', 'false');
                 setTimeout(() => {
                   $('.how-to').hide();
                   $('.start').show();
@@ -333,13 +333,14 @@ const battle1 = () => {
 }
 
 const startLevel2 = () => {
-  alert('level 2 started');
-  $('html').css('background', 'url(../images/)')
-
+  $('#createPlayer').hide();
+  $('#mark').hide();
+  $('html').css('background', 'url(images/background2.png) no-repeat');
+  $('html').css('background-size', 'cover')
 }
 
 $(() => {
-  if(localStorage.getItem('level1-completed') === 'true'){
+  if(localStorage.getItem('level1-completed') === 'false'){
     startLevel2();
   }else{
     startGame();
