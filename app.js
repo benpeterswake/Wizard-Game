@@ -12,6 +12,7 @@ class Enemy {
     this.health = 100;
     this.enemy = $('<div>').addClass('enemy');
     this.img = $('<img>').attr('src','images/enemy.png').addClass('enemyImg');
+
   }
   generateEnemy(speed){
     let start = ($( window ).width() + 'px');
@@ -125,11 +126,47 @@ const displayClues = () => {
   $('#game-board').prepend($spellbook);
   setTimeout(() => {
     $img.show();
-  },800);
+  },700);
 }
 
+
+const findBook = () => {
+  if($('#hero').position().left <= $('.spellbook').position().left){
+    $('.how-to').hide();
+    $('.spellbook').css('margin-top','-500px');
+    $('.spellbook').css('left','45%')
+    $('.spellbook').css('width','80px');
+    $('.start').text('You found a spellbook!').show('slow');
+    setTimeout(() => {
+        $('.spellbook').remove();
+    },3500)
+    setTimeout(() => {
+      $('.start').text('Inside the book, you find that most the pages are empty...').show();
+    },3500);
+    setTimeout(() => {
+      $('.start').text('...however you come arcoss a page with the header "Fireball attack."').show();
+    },8000);
+    setTimeout(() => {
+      $('.start').text('As you read, you realize that you are already fimilar with the instructions...').show();
+    },12000);
+    setTimeout(() => {
+      $('.start').text('You decide to try to cast the spell...').show();
+    },17000);
+    setTimeout(() => {
+      $('.how-to h3').text('Cast a few Fireballs')
+      $('.how-to p').text('Press A to cast a Fireball');
+      $('.how-to').show();
+      $('.start').hide();
+    },20000);
+    setTimeout(() => {
+      $('.attack').hide();
+      $('.fireball').hide();
+      battle1();
+    },30000);
+  }
+}
 //move and attack with character
-const moveCharacter = () => {
+const useCharacter = () => {
   $(document).keydown(function(event){
     let $hero = $('#hero');
     let $board = $('#game-board');
@@ -138,43 +175,7 @@ const moveCharacter = () => {
       if(event.which == "37"){
         $hero.css('transform', 'scaleX(1)');
         $hero.animate({left: "-=8"}, 0);
-        console.log($('#hero').position().left);
-        console.log($('.spellbook').position().left);
-        if($('#hero').position().left <= $('.spellbook').position().left){
-          $('.how-to').hide();
-          $('.spellbook').css('margin-top','-500px');
-          $('.spellbook').css('left','45%')
-          $('.spellbook').css('width','80px');
-          $('.start').text('You found a spellbook!').show('slow');
-          setTimeout(() => {
-              $('.spellbook').remove();
-          },3500)
-          setTimeout(() => {
-            $('.start').text('Inside the book, you find that most the pages are empty...').show();
-          },3500);
-          setTimeout(() => {
-            $('.start').text('...however you come arcoss a page with the header "Fireball attack."').show();
-          },8000);
-          setTimeout(() => {
-            $('.start').text('As you read, you realize that you are already fimilar with the instructions...').show();
-          },12000);
-          setTimeout(() => {
-            $('.start').text('You decide to try to cast the spell...').show();
-          },17000);
-          setTimeout(() => {
-            $('.how-to h3').text('Cast a few Fireballs')
-            $('.how-to p').text('Press A to cast a fireball');
-            $('.how-to').show();
-            $('.start').hide();
-          },20000);
-          setTimeout(() => {
-            $('.attack').hide();
-            $('.fireball').hide();
-            battle1();
-          },30000);
-        }else{
-          console.log('nope');
-        }
+        findBook();
       }
       if(event.which == "39") {
         $hero.css('transform', 'scaleX(-1)');
@@ -205,12 +206,11 @@ const moveCharacter = () => {
               left: width,
           }, 1500);
         let checkattack = setInterval(function () {
-          var delta = ($attack.width() + $(".enemyImg").width()) * 0.5 ;
-          var x1 = $attack.offset().left;
-          var y1 = $attack.offset().top;
-          var x2 = $(".enemyImg").offset().left;
-          var y2 = $(".enemyImg").offset().top;
-
+          let delta = ($attack.width() + $(".enemyImg").width()) * 0.5 ;
+          let x1 = $attack.offset().left;
+          let y1 = $attack.offset().top;
+          let x2 = $(".enemyImg").offset().left;
+          let y2 = $(".enemyImg").offset().top;
           if (
                x1 >= x2 - delta &&
                x1 <= x2 + delta &&
@@ -240,12 +240,11 @@ const moveCharacter = () => {
               if(skully7.health <=0){
                 skully8.hit();
               }
+
            } else {
              console.log('Nothing hit');
            }
         }, 10);
-
-
       }
     }else if($hero.css('left') < '0px'){
       //hero1
@@ -299,7 +298,7 @@ const battle1 = () => {
     $('.start').text('You hear something coming from the edge of the forrest!');
   },4000);
   setTimeout(() => {
-    $('.start').text('It appears that a pack of Skeleton Warroirs are approaching and they don\'t look friendly!');
+    $('.start').text('It appears that a pack of Skeleton Warriors are approaching and they don\'t look friendly!');
   },8000);
   setTimeout(() => {
     $('.start').hide();
@@ -312,12 +311,12 @@ const battle1 = () => {
     skully6.generateEnemy(20000);
     skully7.generateEnemy(23000);
     skully8.generateEnemy(25000);
-
-  },14000)
+  },12000);
 
 }
 
 $(() => {
     startGame();
-    moveCharacter();
+    useCharacter();
+
 });
