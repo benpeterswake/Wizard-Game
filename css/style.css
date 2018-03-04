@@ -67,7 +67,6 @@ html{
   width: 30px;
 }
 .fireball{
-  margin-top: 370px;
   width: 30px;
   transform:rotate(90deg);
 }
@@ -78,7 +77,7 @@ html{
 }
 .enemy{
   width:40px;
-  margin-top: 352px;
+  margin-top: 385px;
 }
 .enemyImg {
   position: absolute;
@@ -104,6 +103,6 @@ color:lightgreen;
 .spellbook{
   position: absolute;
   width: 22px;
-  margin-top:392px;
+  margin-top:25px;
   left:500px;
 }
