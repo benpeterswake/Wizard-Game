@@ -72,7 +72,7 @@ html{
 }
 .start{
   text-align: center;
-  margin-top: 10%;
+  margin-top: 118px;
   font-size: 40px;
 }
 .enemy{
@@ -85,6 +85,8 @@ html{
   width:35px;
 }
 .info{
+  position: absolute;
+  top:5px!important;
   border: 5px solid gray;
   background-color: rgba(0,0,0,0.4);
   border-radius: 0.3em;
@@ -98,11 +100,16 @@ color:lightgreen;
 }
 .how-to{
   text-align: center;
-  margin:0 auto;
+  margin:100px auto;
 }
 .spellbook{
   position: absolute;
   width: 22px;
   margin-top:25px;
   left:500px;
+}
+.enemyhealth{
+  font-size: 16px;
+  color:red;
+  font-weight: bold;
 }

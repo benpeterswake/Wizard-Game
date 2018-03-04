@@ -45,9 +45,9 @@ const startGame = () => {
   $('#mark').hide();
   $('#game-board').hide();
   $('#button').on('click', () => {
-    if($('#name').val().length <= 0){
-      console.log('wored');
-    }
+    if($('#name').val().length === 0){
+      alert('Name is required!')
+    }else{
     //get username
     player.name = $('#name').val()
     //Hide name-input and show player
@@ -59,27 +59,29 @@ const startGame = () => {
     }, 100);
     //Show opening text
     const $div = $('<div>').addClass('start').text('You awake in a field...');
-    $div.show('slow');
+    setTimeout(() => {
+          $('body').prepend($div);
+    }, 1500);
     setTimeout(() => {
       $div.text('..with no memory of how you got there.');
-    },2500);
+    },3000);
     setTimeout(() => {
       $div.text('In the distance you see a forrest and a mountain range...');
     },7500);
     setTimeout(() => {
       $div.text('..Where are you? And what happened?!');
-    },11500);
+    },12500);
     setTimeout(() => {
       $div.text('You need to look around and see if you can find any clues..');
-    },14500);
+    },15500);
     setTimeout(() => {
       $div.hide('slow');
-      $('#mark').hide('slow');
+      $('#mark').hide('slow');``
       displayInfo();
       displayClues();
-    },19500);
+    },20500);
 
-    $('body').prepend($div);
+    }
   });
 }
 
@@ -112,7 +114,7 @@ const displayClues = () => {
   $('#game-board').prepend($spellbook);
   setTimeout(() => {
     $img.show();
-  },300);
+  },800);
 }
 
 //move and attack with character
@@ -135,7 +137,7 @@ const moveCharacter = () => {
           $('.start').text('You found a spellbook!').show('slow');
           setTimeout(() => {
               $('.spellbook').remove();
-          },3000)
+          },3500)
           setTimeout(() => {
             $('.start').text('Inside the book, you find that most the pages are empty...').show();
           },3500);
@@ -179,7 +181,6 @@ const moveCharacter = () => {
       }
       //Attack with fireball
       if(event.which == "65"){
-        console.log($('.emenyImg').position());
         $hero.css('transform', 'scaleX(-1)');
         let width = ("+=" + $( window ).width() + 'px');
         let location = $hero.css('left');
@@ -192,14 +193,13 @@ const moveCharacter = () => {
           $(".attack").animate({
               left: width,
           }, 1500);
-        setInterval(function collision() {
+        let checkattack = setInterval(function () {
           var delta = ($attack.width() + $(".enemyImg").width()) * 0.5 ;
           var x1 = $attack.offset().left;
           var y1 = $attack.offset().top;
           var x2 = $(".enemyImg").offset().left;
           var y2 = $(".enemyImg").offset().top;
-          console.log(x1);
-          console.log(x2);
+
           if (
                x1 >= x2 - delta &&
                x1 <= x2 + delta &&
@@ -209,13 +209,13 @@ const moveCharacter = () => {
               $attack.hide();
               skully.hit();
               if(skully.health <=0 ){
-                console.log(skully.health);
                 skully2.hit();
               }
            } else {
-              clearInterval(collision);
+             console.log('Nothing hit');
            }
         }, 10);
+
 
       }
     }else if($hero.css('left') < '0px'){
@@ -276,8 +276,8 @@ const battle1 = () => {
     $('.start').hide();
     $('.how-to').show();
     skully.generateEnemy(10000);
-    skully2.generateEnemy(13000);
-  },10000)
+    skully2.generateEnemy(14000);
+  },14000)
 
 }
 
