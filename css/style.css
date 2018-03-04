@@ -113,7 +113,8 @@ color:lightgreen;
   left:500px;
 }
 .healthBar{
-  font-size: 25px;
+  position: absolute;
+  font-size: 22px;
   color:red;
   font-weight: bold;
   margin-top: -20px;

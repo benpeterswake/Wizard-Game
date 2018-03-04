@@ -12,14 +12,13 @@ class Enemy {
     this.health = 100;
     this.enemy = $('<div>').addClass('enemy');
     this.img = $('<img>').attr('src','images/enemy.png').addClass('enemyImg');
-
+    this.healthBar = $('<div>').addClass('healthBar');
   }
   generateEnemy(speed){
     let start = ($( window ).width() + 'px');
     let end = ("-=" + $( window ).width() + 'px');
-    const $healthBar = $('<div>').addClass('healthBar');
-    $healthBar.text(this.health);
-    this.enemy.append(this.img);
+    this.healthBar.text(this.health);
+    this.enemy.append(this.img, this.healthBar);
     this.enemy.css('margin-left', start);
     this.enemy.animate({
     marginLeft: end,
@@ -28,13 +27,16 @@ class Enemy {
   }
 
   hit(){
+    this.healthBar.empty();
     this.health -= 20;
+    this.healthBar.text(this.health);
     if(this.health<=0){
       this.enemy.stop();
       this.img.attr('src', 'images/hit.png').addClass('hit');
+      this.healthBar.remove()
       setTimeout(() => {
       this.enemy.remove();
-      },500);
+      },200);
     }else{
       console.log('still alive');
     }
@@ -94,7 +96,6 @@ const startGame = () => {
       displayInfo();
       displayClues();
     },20500);
-
     }
   });
 }
@@ -241,6 +242,22 @@ const useCharacter = () => {
               if(skully7.health <=0){
                 skully8.hit();
               }
+              if(skully8.health <= 0){
+                localStorage.setItem('level1-completed', 'true');
+                setTimeout(() => {
+                  $('.how-to').hide();
+                  $('.start').show();
+                  $('.start').text('Woah, that was a close call!');
+                },2000);
+                setTimeout(() => {
+                  $('.start').text('Why are there Skeleton Warriors all the way out here?!');
+                },4500);
+                setTimeout(() => {
+                  $('.start').hide();
+                  alert('Level 1 completed');
+                  window.location.reload(false);
+                },7500);
+              }
 
            } else {
              console.log('Nothing hit');
@@ -315,11 +332,19 @@ const battle1 = () => {
   },12000);
 }
 
+const startLevel2 = () => {
+  alert('level 2 started');
+  $('html').css('background', 'url(../images/)')
+
+}
+
 $(() => {
+  if(localStorage.getItem('level1-completed') === 'true'){
+    startLevel2();
+  }else{
     startGame();
     useCharacter();
-    while(skully8.health <= 0){
-      alert('it worked')
-    }
+  }
+
 
 });
