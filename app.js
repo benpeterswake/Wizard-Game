@@ -35,6 +35,7 @@ class Enemy {
       this.img.attr('src', 'images/hit.png').addClass('hit');
       this.healthBar.remove()
       setTimeout(() => {
+      this.enemy.addClass('dead');
       this.enemy.remove();
       },200);
     }else{
@@ -146,7 +147,7 @@ const findBook = () => {
       $('.start').text('Inside the book, you find that most the pages are empty...').show();
     },3500);
     setTimeout(() => {
-      $('.start').text('...however you come arcoss a page with the header "Fireball attack."').show();
+      $('.start').text('...however you come arcoss a page with the header "Fireball attack"').show();
     },8000);
     setTimeout(() => {
       $('.start').text('As you read, you realize that you are already fimilar with the instructions...').show();
@@ -172,26 +173,20 @@ const useCharacter = () => {
   $(document).keydown(function(event){
     let $hero = $('#hero');
     let $board = $('#game-board');
+    console.log(Math.floor($hero.position().left));
+    console.log($(window).width());
     if(($hero.css('left') > '0px') && ($hero.css('left') !==  (($( window ).width()-100)+'px'))){
       //hero1
+      //left arrow
       if(event.which == "37"){
         $hero.css('transform', 'scaleX(1)');
         $hero.animate({left: "-=8"}, 0);
         findBook();
       }
+      //right arrow
       if(event.which == "39") {
         $hero.css('transform', 'scaleX(-1)');
         $hero.animate({left: "+=8"}, 0);
-      }
-      if(event.which == "68"){
-        $('.defend').remove();
-        const $defend = $('<div>').addClass('defend');
-        const $img = $('<img>').attr('src','images/fire.png').addClass('shield');
-        $defend.append($img)
-        $hero.prepend($defend);
-        setTimeout(() => {
-            $('.defend').remove();
-        }, 4000);
       }
       //Attack with fireball
       if(event.which == "65"){
@@ -221,7 +216,7 @@ const useCharacter = () => {
            ) {
               $attack.hide();
               skully.hit();
-              if(skully.health <=0 ){
+              if(skully.health <=0 && (skully.enemy.hasClass('dead') === true)){
                 skully2.hit();
               }
               if(skully2.health <=0){
@@ -243,66 +238,48 @@ const useCharacter = () => {
                 skully8.hit();
               }
               if(skully8.health <= 0){
-                localStorage.setItem('level1-completed', 'false');
+                localStorage.setItem('level1-completed', 'true');
                 setTimeout(() => {
                   $('.how-to').hide();
                   $('.start').show();
                   $('.start').text('Woah, that was a close call!');
                 },2000);
                 setTimeout(() => {
-                  $('.start').text('Why are there Skeleton Warriors all the way out here?!');
+                  $('.start').text('None of this makes sense?!');
                 },4500);
                 setTimeout(() => {
+                  $('.start').text('Why are there Skeleton Warriors all the way out here?!');
+                },6500);
+                setTimeout(() => {
                   $('.start').hide();
-                  alert('Level 1 completed');
-                  window.location.reload(false);
-                },7500);
+                  alert('Intro completed! All your progress has been saved!');
+                },8000)
               }
-
            } else {
              console.log('Nothing hit');
            }
         }, 10);
       }
-    }else if($hero.css('left') < '0px'){
+    }
+    //If hero is on left side of screen
+    if($hero.css('left') <= '0px'){
       //hero1
-      if(event.which == "37"){
-        $hero.css('transform', 'scaleX(-1)');
-        $hero.animate({left: "-=0"}, 0);
-      }
       if(event.which == "39") {
         $hero.css('transform', 'scaleX(-1)');
         $hero.animate({left: "+=8"}, 0);
       }
-      if(event.which == "68"){
-          $('.defend').remove();
-        const $defend = $('<div>').addClass('defend');
-        const $img = $('<img>').attr('src','images/fire.png').addClass('shield');
-        $defend.append($img)
-        $hero.prepend($defend);
-        setTimeout(() => {
-            $('.defend').remove();
-        }, 4000)
-      }
-    }else if($hero.css('left') <= (($( window ).width()-100)+'px')){
+    }
+    //if hero is on right side of screen
+    if($hero.position().left >= ($(window).width()-40)){
       //hero1
-      if(event.which == "37"){
+      if(skully8.health <= 0){
+        $hero.animate({left: "+=8"}, 0);
+        alert('next level')
+        window.location.reload(false);
+      }else{
+      //right arrow
         $hero.css('transform', 'scaleX(-1)');
         $hero.animate({left: "-=8"}, 0);
-      }
-      if(event.which == "39") {
-        $hero.css('transform', 'scaleX(-1)');
-        $hero.animate({left: "+=0"}, 0);
-      }
-      if(event.which == "68"){
-          $('.defend').remove();
-        const $defend = $('<div>').addClass('defend');
-        const $img = $('<img>').attr('src','images/fire.png').addClass('shield');
-        $defend.append($img)
-        $hero.prepend($defend);
-        setTimeout(() => {
-            $('.defend').remove();
-        }, 4000)
       }
     }
   });
@@ -336,7 +313,7 @@ const startLevel2 = () => {
   $('#createPlayer').hide();
   $('#mark').hide();
   $('html').css('background', 'url(images/background2.png) no-repeat');
-  $('html').css('background-size', 'cover')
+  $('html').css('background-size', 'cover');
 }
 
 $(() => {

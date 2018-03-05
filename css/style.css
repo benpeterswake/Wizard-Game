@@ -73,12 +73,12 @@ html{
 }
 .start{
   text-align: center;
-  margin-top: 118px;
+  margin-top: 115px;
   font-size: 40px;
 }
 .enemy{
   width:40px;
-  margin-top: 388px;
+  margin-top: 390px;
 }
 .enemyImg {
   position: absolute;
