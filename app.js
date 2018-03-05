@@ -59,6 +59,7 @@ const skully8 = new Enemy();
 const startGame = () => {
   $('#createPlayer').show('slow');
   $('#hero').hide();
+  $('.endArrow').hide();
   $('#mark').hide();
   $('#game-board').hide();
   $('#button').on('click', () => {
@@ -66,7 +67,8 @@ const startGame = () => {
       alert('Name is required!')
     }else{
     //get username
-    player.name = $('#name').val()
+    player.name = $('#name').val();
+    localStorage.setItem('name', player.name);
     //Hide name-input and show player
     $('#createPlayer').hide();
     $('#game-board').show();
@@ -114,7 +116,7 @@ const displayInfo = () => {
     $health.text('Health: ' + player.health);
     $controls.text('How to play:');
     // $attackbtn.text('Press A: (Attack) cast fireball');
-    $defendbtn.text('Use Arrow keys to move');
+    $defendbtn.text('Hold down Arrow keys to move');
     $playbar.append($controls,$defendbtn)
     $infobar.append($name, $health);
     $('body').prepend($infobar, $playbar);
@@ -131,7 +133,6 @@ const displayClues = () => {
   },600);
 }
 
-
 const findBook = () => {
   if($('#hero').position().left <= $('.spellbook').position().left){
     $('.how-to').hide();
@@ -141,29 +142,30 @@ const findBook = () => {
     $('.start').text('You found a spellbook!').show('slow');
     $('#hero img').attr('src', 'images/herobook.png').addClass('herobook');
     setTimeout(() => {
-        $('.spellbook').remove();
+      $('.spellbook').remove();
     },3500)
     setTimeout(() => {
       $('.start').text('Inside the book, you find that most the pages are empty...').show();
     },3500);
     setTimeout(() => {
-      $('.start').text('...however you come arcoss a page with the header "Fireball"').show();
+      $('.start').text('...however you come arcoss a page with the header "Fireball"');
     },8000);
     setTimeout(() => {
-      $('.start').text('As you read, you realize that you are already fimilar with the instructions...').show();
+      $('.start').text('As you read, you realize that you are already fimilar with the instructions...');
     },12000);
     setTimeout(() => {
-      $('.start').text('You decide to try to cast the spell...').show();
+      $('.start').text('You decide to try to cast the spell...');
+      localStorage.setItem('intructions-completed', 'true');
     },17000);
     setTimeout(() => {
-      $('.how-to h3').text('Cast a few Fireballs')
-      $('.how-to p').text('Press A to cast a Fireball');
+      $('.attack').show();
+      $('.fireball').show();
+      $('.how-to h3').text('Cast a few Fireballs');
+      $('.how-to p').text('Tap A to cast a Fireball');
       $('.how-to').show();
       $('.start').hide();
     },20000);
     setTimeout(() => {
-      $('.attack').hide();
-      $('.fireball').hide();
       battle1();
     },30000);
   }
@@ -189,76 +191,85 @@ const useCharacter = () => {
       }
       //Attack with fireball
       if(event.which == "65"){
-        $hero.css('transform', 'scaleX(-1)');
-        let width = ("+=" + $( window ).width() + 'px');
-        let location = $hero.css('left');
-        $('#game-board .attack').eq(10).remove();
-        const $attack = $('<div>').addClass('attack');
-        const $img = $('<img>').attr('src','images/fire.png').addClass('fireball');
-          $attack.append($img);
-          $board.prepend($attack);
-          $attack.css('margin-left', location);
-          $(".attack").animate({
-              left: width,
-          }, 1500);
-        let checkattack = setInterval(function () {
-          let delta = ($attack.width() + $(".enemyImg").width()) * 0.5 ;
-          let x1 = $attack.offset().left;
-          let y1 = $attack.offset().top;
-          let x2 = $(".enemyImg").offset().left;
-          let y2 = $(".enemyImg").offset().top;
-          if (
-               x1 >= x2 - delta &&
-               x1 <= x2 + delta &&
-               y1 >= y2 - delta &&
-               y1 <= y2 + delta
-           ) {
-              $attack.hide();
-              skully.hit();
-              if(skully.health <=0 && (skully.enemy.hasClass('dead') === true)){
-                skully2.hit();
-              }
-              if(skully2.health <=0 && (skully2.enemy.hasClass('dead') === true)){
-                skully3.hit();
-              }
-              if(skully3.health <=0 && (skully3.enemy.hasClass('dead') === true)){
-                skully4.hit();
-              }
-              if(skully4.health <=0 && (skully4.enemy.hasClass('dead') === true)){
-                skully5.hit();
-              }
-              if(skully5.health <=0 && (skully5.enemy.hasClass('dead') === true)){
-                skully6.hit();
-              }
-              if(skully6.health <=0 && (skully6.enemy.hasClass('dead') === true)){
-                skully7.hit();
-              }
-              if(skully7.health <=0 && (skully7.enemy.hasClass('dead') === true)){
-                skully8.hit();
-              }
-              if(skully8.health <= 0){
-                localStorage.setItem('level1-completed', 'true');
-                setTimeout(() => {
-                  $('.how-to').hide();
-                  $('.start').show();
-                  $('.start').text('Woah, that was a close call!');
-                },2000);
-                setTimeout(() => {
-                  $('.start').text('None of this makes sense?!');
-                },4500);
-                setTimeout(() => {
-                  $('.start').text('Why are there Skeleton Warriors all the way out here?!');
-                },6500);
-                setTimeout(() => {
-                  $('.start').hide();
-                  const $endarrow = $('<img>').addClass('endArrow').attr('src', 'images/arrow.gif');
-                  $('#game-board').append($endarrow);
-                },8000)
-              }
-           } else {
-             console.log('Nothing hit');
-           }
-        }, 10);
+        if(localStorage.getItem('intructions-completed') === 'true'){
+          $hero.css('transform', 'scaleX(-1)');
+          let width = ("+=" + $( window ).width() + 'px');
+          let location = $hero.css('left');
+          $('#game-board .attack').eq(10).remove();
+          const $attack = $('<div>').addClass('attack');
+          const $img = $('<img>').attr('src','images/fire.png').addClass('fireball');
+            $attack.append($img);
+            $board.prepend($attack);
+            $attack.css('margin-left', location);
+            $(".attack").animate({
+                left: width,
+            }, 1500);
+          if(localStorage.getItem('level1-completed' === 'false')){
+          let checkattack = setInterval(function () {
+            let delta = ($attack.width() + $(".enemyImg").width()) * 0.5 ;
+            let x1 = $attack.offset().left;
+            let y1 = $attack.offset().top;
+            let x2 = $(".enemyImg").offset().left;
+            let y2 = $(".enemyImg").offset().top;
+            if (
+                 x1 >= x2 - delta &&
+                 x1 <= x2 + delta &&
+                 y1 >= y2 - delta &&
+                 y1 <= y2 + delta
+             ) {
+                $attack.hide();
+                skully.hit();
+                if(skully.health <=0 && (skully.enemy.hasClass('dead') === true)){
+                  skully2.hit();
+                }
+                if(skully2.health <=0 && (skully2.enemy.hasClass('dead') === true)){
+                  skully3.hit();
+                }
+                if(skully3.health <=0 && (skully3.enemy.hasClass('dead') === true)){
+                  skully4.hit();
+                }
+                if(skully4.health <=0 && (skully4.enemy.hasClass('dead') === true)){
+                  skully5.hit();
+                }
+                if(skully5.health <=0 && (skully5.enemy.hasClass('dead') === true)){
+                  skully6.hit();
+                }
+                if(skully6.health <=0 && (skully6.enemy.hasClass('dead') === true)){
+                  skully7.hit();
+                }
+                if(skully7.health <=0 && (skully7.enemy.hasClass('dead') === true)){
+                  skully8.hit();
+                }
+                if(skully8.health <= 0){
+                  localStorage.setItem('level1-completed', 'true');
+                  setTimeout(() => {
+                    $('.how-to').hide();
+                    $('.start').show();
+                    $('.start').text('Woah, that was a close call!');
+                  },2000);
+                  setTimeout(() => {
+                    $('.start').text('None of this makes sense?!');
+                  },4500);
+                  setTimeout(() => {
+                    $('.start').text('Why are there Skeleton Warriors all the way out here?!');
+                  },7000);
+                  setTimeout(() => {
+                    $('.start').text('You see a small village in the distance... ');
+                  },10500);
+                  setTimeout(() => {
+                    $('.start').text('It could be a long walk, better get moving...');
+                  },13500);
+                  setTimeout(() => {
+                    $('.start').hide();
+                    $('.endArrow').show();
+                  },16500);
+                }
+             } else {
+               console.log('Nothing hit');
+             }
+          }, 10);
+          }
+        }
       }
     }
     //If hero is on left side of screen
@@ -274,8 +285,15 @@ const useCharacter = () => {
       //hero1
       if(skully8.health <= 0){
         $hero.animate({left: "+=8"}, 0);
-        alert('Intro completed! All your progress has been saved!')
-        window.location.reload(false);
+        alert('Intro completed! All your progress has been saved!');
+        $('.endArrow').hide();
+        $('.info').hide();
+        $('#hero').hide();
+        $('html').css('background', 'url(images/loading.gif) no-repeat center');
+        $('html').css('background-color', 'rgb(25,31,38)')
+        setTimeout(() => {
+          window.location.reload(false);
+        },4000);
       }else{
       //right arrow
         $hero.css('transform', 'scaleX(-1)');
@@ -293,7 +311,7 @@ const battle1 = () => {
     $('.start').text('You hear something coming from the edge of the forrest!');
   },4000);
   setTimeout(() => {
-    $('.start').text('It appears that a pack of Skeleton Warriors are approaching and they don\'t look friendly!');
+    $('.start').text('A pack of Skeleton Warriors are approaching and they don\'t look friendly!');
   },8000);
   setTimeout(() => {
     $('.start').hide();
@@ -310,15 +328,35 @@ const battle1 = () => {
 }
 
 const startLevel2 = () => {
+  //Enter view with new background
+  $('#hero').fadeIn();
+  $('#hero img').attr('src', 'images/herobook.png').addClass('herobook');
+  $('.endArrow').hide();
   $('#createPlayer').hide();
   $('#mark').hide();
-  $('html').css('background', 'url(images/background2.png) no-repeat');
-  $('html').css('background-size', 'cover');
+  $('html').css('background', 'url(images/background2.png)');
+  $('#hero').css('left', '2%');
+  $('#hero').css('top','520px');
+  $('.enemy').css('margin-top', '535px');
+  //Display player info bar
+  player.name = localStorage.getItem('name');
+  displayInfo();
+  $('.how-to').hide();
+  const $level2Text = $('<div>').addClass('start');
+  $level2Text.text('You walk for serveral hours...');
+  setTimeout(() => {
+  $level2Text.text('..until you come to an opening in the forrest.');
+  }, 2500);
+  setTimeout(() => {
+  $level2Text.text('You have almost made it to the village!');
+  }, 6000);
+  $('body').prepend($level2Text);
 }
 
 $(() => {
-  if(localStorage.getItem('level1-completed') === 'false'){
+  if(localStorage.getItem('level1-completed') === 'true'){
     startLevel2();
+    useCharacter();
   }else{
     startGame();
     useCharacter();
