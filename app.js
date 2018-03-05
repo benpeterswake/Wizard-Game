@@ -147,7 +147,7 @@ const findBook = () => {
       $('.start').text('Inside the book, you find that most the pages are empty...').show();
     },3500);
     setTimeout(() => {
-      $('.start').text('...however you come arcoss a page with the header "Fireball attack"').show();
+      $('.start').text('...however you come arcoss a page with the header "Fireball"').show();
     },8000);
     setTimeout(() => {
       $('.start').text('As you read, you realize that you are already fimilar with the instructions...').show();
@@ -173,8 +173,7 @@ const useCharacter = () => {
   $(document).keydown(function(event){
     let $hero = $('#hero');
     let $board = $('#game-board');
-    console.log(Math.floor($hero.position().left));
-    console.log($(window).width());
+    //If her is in the main area of screen
     if(($hero.css('left') > '0px') && ($hero.css('left') !==  (($( window ).width()-100)+'px'))){
       //hero1
       //left arrow
@@ -219,22 +218,22 @@ const useCharacter = () => {
               if(skully.health <=0 && (skully.enemy.hasClass('dead') === true)){
                 skully2.hit();
               }
-              if(skully2.health <=0){
+              if(skully2.health <=0 && (skully2.enemy.hasClass('dead') === true)){
                 skully3.hit();
               }
-              if(skully3.health <=0){
+              if(skully3.health <=0 && (skully3.enemy.hasClass('dead') === true)){
                 skully4.hit();
               }
-              if(skully4.health <=0){
+              if(skully4.health <=0 && (skully4.enemy.hasClass('dead') === true)){
                 skully5.hit();
               }
-              if(skully5.health <=0){
+              if(skully5.health <=0 && (skully5.enemy.hasClass('dead') === true)){
                 skully6.hit();
               }
-              if(skully6.health <=0){
+              if(skully6.health <=0 && (skully6.enemy.hasClass('dead') === true)){
                 skully7.hit();
               }
-              if(skully7.health <=0){
+              if(skully7.health <=0 && (skully7.enemy.hasClass('dead') === true)){
                 skully8.hit();
               }
               if(skully8.health <= 0){
@@ -252,7 +251,8 @@ const useCharacter = () => {
                 },6500);
                 setTimeout(() => {
                   $('.start').hide();
-                  alert('Intro completed! All your progress has been saved!');
+                  const $endarrow = $('<img>').addClass('endArrow').attr('src', 'images/arrow.gif');
+                  $('#game-board').append($endarrow);
                 },8000)
               }
            } else {
@@ -274,7 +274,7 @@ const useCharacter = () => {
       //hero1
       if(skully8.health <= 0){
         $hero.animate({left: "+=8"}, 0);
-        alert('next level')
+        alert('Intro completed! All your progress has been saved!')
         window.location.reload(false);
       }else{
       //right arrow
@@ -323,6 +323,4 @@ $(() => {
     startGame();
     useCharacter();
   }
-
-
 });
