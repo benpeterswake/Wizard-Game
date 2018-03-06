@@ -148,6 +148,21 @@ color:lightgreen;
   width: 150px!important;
   left:50%;
 }
+.talking{
+  margin-top: 2.3%!important;
+}
+@media(max-height: 900px){
+  .helper-container{
+    position: absolute;
+    z-index: -1;
+    margin-top: 1%;
+    width: 150px!important;
+    left:50%;
+  }
+  .talking{
+    margin-top: -3.9%!important;
+  }
+}
 .boss-container{
   position: absolute;
   width: 300px;

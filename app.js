@@ -419,6 +419,7 @@ const startLevel3 = () => {
   player.name = localStorage.getItem('name');
   displayInfo();
   $('.how-to').hide();
+  localStorage.setItem('helper-convo-completed', 'false');
   const $div = $('<div>').addClass('helper-container');
   const $helper = $('<img>').addClass('helper').attr('src','images/helper.gif');
   const $question = $('<img>').attr('src','images/question.gif').attr('id','question');
@@ -432,22 +433,58 @@ const startLevel3 = () => {
   $(document).keydown((event) => {
     if(event.which == 39){
       console.log($('.helper').position().left);
-      if($('#hero').position().left >= ($('.helper-container').position().left -40) ){
+      if($('#hero').position().left >= ($('.helper-container').position().left -40) && localStorage.getItem('helper-convo-completed') === 'false'){
         $question.hide();
-        $('.helper-container').css('margin-top','38px');
-          $speech.text('Hello little wizard! Why don\'t you come on into the taven and get some coffee, or an ale?!');
+        $('.helper-container').addClass('talking');
+          $speech.text('Hello little wizard! You look fimiliar. Don\'t I know you from somewhere? Hmm...');
         setTimeout(() => {
-          $speech.text('Hey, that book looks familiar. Where\'d you get it?');
-        }, 4000);
+          $speech.text('Hey, that book looks familiar too. Where\'d you get it? ...');
+        }, 6000);
         setTimeout(() => {
-          $speech.text('Not a big talker ay? Well you should come ');
+          $speech.text('Not a big talker ay? Well, anyways you should go into Ole Tom\'s Tavern here behind me and grab a coffee or an ale.');
           $speech.append($button);
-        }, 8000);
+          localStorage.setItem('helper-convo-completed', 'true');
+          $button.click(() => {
+            $speech.text('Ok, let me buy you an ale. Something gives me the feeling that we\'ll have a lot to talk about...');
+            setTimeout(() => {
+              $helper.hide();
+              $('#hero').hide();
+              $speech.hide();
+              $('html').css('background', 'url(images/loading.gif) no-repeat center center');
+              $('html').css('background-color', 'rgb(25,31,38)');
+            }, 5000);
+            setTimeout(() => {
+              tavernScene();
+            }, 7500);
+          });
+        }, 10000);
         $div.prepend($speech);
-
       }
     }
   });
+
+}
+const tavernScene = () => {
+  $('html').css('background', 'url(images/tavern.png) no-repeat center');
+  $('html').css('background-size','cover');
+  setTimeout(() => {
+    $('.speechBubble').css('top', '-250px');
+    $('.speechBubble').css('position', 'absolute');
+    $('.speechBubble').css('left', '200px');
+    $('.speechBubble').text('So you just woke up with no memory of how you got there? That certainly is strange my little friend.').show()
+  }, 1000);
+  setTimeout(() => {
+    $('.speechBubble').text('And you say there were Skeleton Warriors all the way out here? Highly unlikely...')
+  }, 8000);
+  setTimeout(() => {
+    $('.speechBubble').text('The only person who has ever been powerful enough to control the Skeleton race was the Dark Wizard, Gravewrick.')
+  },13500);
+  setTimeout(() => {
+      $('.speechBubble').text('but he was banished to the shadow realm centuries ago. Don\'t you know this story? Every wizard learns of it during thier training.');
+  },20000);
+  setTimeout(() => {
+      $('.speechBubble').text('Where did you say you where from again? Ah, that\'s right the whole memory loss thing...');
+  },28000);
 
 }
 
