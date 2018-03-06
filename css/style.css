@@ -71,6 +71,9 @@ html{
   width: 30px;
   transform:rotate(90deg);
 }
+.frostbolt{
+  width: 30px;
+}
 .start{
   text-align: center;
   margin-top: 115px;
@@ -82,12 +85,13 @@ html{
 }
 .enemyImg {
   position: absolute;
+  transform: scaleX(-1);
   z-index: 5;
-  width:35px;
+  width:39px;
 }
 .info{
   position: absolute;
-  top:8px!important;
+  top:10px!important;
   border: 5px solid gray;
   -webkit-box-shadow: 3px 3px 5px 6px #ccc;
   -moz-box-shadow:3px 3px 5px 6px #ccc;
@@ -132,4 +136,22 @@ color:lightgreen;
   position: absolute;
   left: 88%;
   width:150px;
+}
+.boss-container{
+  position: absolute;
+  width: 300px;
+  left:49%;
+  margin-top: -190px;
+}
+.boss{
+  width: 140px;
+  padding-top:20px;
+}
+.speechBubble{
+  background-color: white;
+  padding:20px;
+  height:90px;
+  text-align:center;
+  border-radius:0.5em;
+  width:200px;
 }
