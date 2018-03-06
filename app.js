@@ -423,19 +423,28 @@ const startLevel3 = () => {
   const $helper = $('<img>').addClass('helper').attr('src','images/helper.gif');
   const $question = $('<img>').attr('src','images/question.gif').attr('id','question');
   const $speech = $('<div>').addClass('speechBubble');
-  $speech.css('height','50px');
+  const $button = $('<button>').addClass('accept').text('Tell me more');
+  $speech.css('height','100px');
+  $speech.css('padding','20px')
   $div.prepend($question);
   $div.append($helper);
   $('#game-board').append($div);
-
   $(document).keydown((event) => {
     if(event.which == 39){
       console.log($('.helper').position().left);
       if($('#hero').position().left >= ($('.helper-container').position().left -40) ){
         $question.hide();
-        $helper.css('margin-top','-40px')
-        $speech.text('Hello little wizard!');
+        $('.helper-container').css('margin-top','38px');
+          $speech.text('Hello little wizard! Why don\'t you come on into the taven and get some coffee, or an ale?!');
+        setTimeout(() => {
+          $speech.text('Hey, that book looks familiar. Where\'d you get it?');
+        }, 4000);
+        setTimeout(() => {
+          $speech.text('Not a big talker ay? Well you should come ');
+          $speech.append($button);
+        }, 8000);
         $div.prepend($speech);
+
       }
     }
   });

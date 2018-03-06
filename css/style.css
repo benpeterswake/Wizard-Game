@@ -166,3 +166,8 @@ color:lightgreen;
   border-radius:0.5em;
   width:200px;
 }
+.accept{
+  display: block;
+  margin: 0 auto;
+  padding: 5px;
+}
