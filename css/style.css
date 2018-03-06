@@ -16,9 +16,6 @@ html{
   width: 27px;
   padding:10px;
 }
-#hero2 img{
-  width: 25px;
-}
 #createPlayer{
   display: block;
   margin:5% auto;
@@ -132,10 +129,24 @@ color:lightgreen;
 .herobook{
   width:33px!important;
 }
+.helper{
+  display: inline-block
+}
+#question{
+  width: 60px;
+  margin-left: 195px;
+}
 .endArrow{
   position: absolute;
   left: 88%;
   width:150px;
+}
+.helper-container{
+  position: absolute;
+  z-index: -1;
+  margin-top: 6%;
+  width: 150px!important;
+  left:50%;
 }
 .boss-container{
   position: absolute;

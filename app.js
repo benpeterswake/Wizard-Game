@@ -169,7 +169,7 @@ const useCharacter = () => {
 
       // A key Attack with fireball
       if(event.which == "65"){
-        if($('.boss').position() != undefined){
+        if($('.boss').position() != undefined || localStorage.getItem('level2-completed') === 'true'){
           console.log('attack disabled');
         }else {
         if(localStorage.getItem('intructions-completed') === 'true'){
@@ -317,8 +317,20 @@ const startLevel2 = () => {
     if(event.which == 39){
         if($('#hero').position().left >= 400 && localStorage.getItem('boss-convo-completed') == 'false'){
           bossConversation();
-        }else if($('#hero').position().left >= $(window).width()){
-          alert('Level 1 part 2 completed')
+        }
+        console.log($('#hero').position().left);
+        console.log($(window).width()-100);
+        if($('#hero').position().left >= $(window).width()-50){
+          localStorage.setItem('level2-completed','true');
+          alert('Level 1 part 2 completed! All your progress has been saved');
+          $('.endArrow').hide();
+          $('.info').hide();
+          $('#hero').hide();
+          $('html').css('background', 'url(images/loading.gif) no-repeat center center');
+          $('html').css('background-color', 'rgb(25,31,38)');
+          setTimeout(() => {
+            window.location.reload(false);
+          },3500);
         }
     }
   });
@@ -351,11 +363,11 @@ const bossConversation = () => {
     $('#level2text').text('Who was that?! What was he talking about?! What prophecy?').show();
   }, 14000);
   setTimeout(() => {
-    $('#level2text').text('I need to get to that village and see if I can get some help!');
+    $('#level2text').text('I need to get to that mountain village and see if I can get some help!');
   }, 17000);
   setTimeout(() => {
     $('#level2text').hide('slow');
-    $('.endArrow').css('margin-top','-50px')
+    $('.endArrow').css('margin-top','-90px')
     $('.endArrow').show();
   }, 20000);
 }
@@ -393,37 +405,49 @@ const useFrostbolt = () => {
 const startLevel3 = () => {
   //Enter view with new background
   $('#hero').fadeIn();
-  $('#hero img').attr('src', 'images/herobook.png').addClass('herobook');
+  $('.heroImg').attr('src', 'images/hero.png');
+  $('.heroImg').css('width', '110px');
   $('.endArrow').hide();
   $('#createPlayer').hide();
   $('#mark').hide();
   $('html').css('background', 'url(images/village.gif) no-repeat center');
-  $('html').css('background-size', 'cover');
+  $('html').css('background-size','cover');
   $('#hero').css('left', '2%');
-  $('#hero').css('top','520px');
+  $('#hero').css('top','71%');
   $('.enemy').css('margin-top', '373px');
   //Display player info bar
   player.name = localStorage.getItem('name');
   displayInfo();
   $('.how-to').hide();
-  const $level2Text = $('<div>').addClass('start');
-    $level2Text.text('You walk for serveral hours...');
-  setTimeout(() => {
-    $level2Text.text('..until you come to an opening in the forrest.');
-  }, 2500);
-  setTimeout(() => {
-    $level2Text.text('You can now see the village clearly. You\'re almost there!');
-  }, 6000);
-  setTimeout(() =>{
-    $level2Text.hide();
-    $('.enemy').css('margin-top', '535px');
-  },9500);
-  $('body').prepend($level2Text);
+  const $div = $('<div>').addClass('helper-container');
+  const $helper = $('<img>').addClass('helper').attr('src','images/helper.gif');
+  const $question = $('<img>').attr('src','images/question.gif').attr('id','question');
+  const $speech = $('<div>').addClass('speechBubble');
+  $speech.css('height','50px');
+  $div.prepend($question);
+  $div.append($helper);
+  $('#game-board').append($div);
+
+  $(document).keydown((event) => {
+    if(event.which == 39){
+      console.log($('.helper').position().left);
+      if($('#hero').position().left >= ($('.helper-container').position().left -40) ){
+        $question.hide();
+        $helper.css('margin-top','-40px')
+        $speech.text('Hello little wizard!');
+        $div.prepend($speech);
+      }
+    }
+  });
 
 }
 
 $(() => {
-  if(localStorage.getItem('level1-completed') === 'true'){
+  if(localStorage.getItem('level2-completed') === 'true'){
+    startLevel3();
+    useCharacter();
+
+  }else if(localStorage.getItem('level1-completed') === 'true'){
     startLevel2();
     useCharacter();
   }else{
