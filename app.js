@@ -305,7 +305,7 @@ const startLevel5 = () => {
     const $speech = $('<div>').addClass('speechBubble2');
     $speech.text('Well... let me start from the beginning... You see, long ago, over a century ago, you and I held arms in countless heroic battles...');
     setTimeout(() => {
-      $speech.text('Back then the world was a much different place...');
+      $speech.text('We fought against the trynical force of Gravewich and his skeleton army... We were ');
     }, 8000);
     setTimeout(() => {
       $speech.text('Back then the world was a much different place...');
