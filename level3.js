@@ -121,6 +121,8 @@ const tavernScene = () => {
 const exitTaven = () => {
   $('#audio').attr('src','audio/snow.mp3');
   $('#audio').attr('autoplay','true');
+  let audio = document.getElementById("audio");
+  audio.volume = 0.2;
   $('#audio').attr('loop','true');
   $('html').css('background', 'url(images/village.gif) no-repeat center');
   $('html').css('background-size','cover');

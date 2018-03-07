@@ -298,6 +298,13 @@ const useCharacter = () => {
 }
 
 const startLevel5 = () => {
+  const $audio = $('<audio>').attr('id','audio');
+  $audio.attr('src','audio/default.mp3');
+  $audio.attr('autoplay','true');
+  $audio.attr('loop','true')
+  $('body').append($audio)
+  let audio = document.getElementById("audio");
+  audio.volume = 0.5;
   $('.endArrow').hide();
   $('#createPlayer').hide();
   $('#hero').hide();
