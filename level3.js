@@ -41,12 +41,12 @@ const startLevel3 = () => {
         $question.hide();
         $('.helper-container').addClass('talking');
           localStorage.setItem('helper-convo-completed', 'true');
-          $speech.text('Hello little wizard! You look fimiliar. Don\'t I know you from somewhere? Hmm...');
+          $speech.text('Hello little wizard! You look familiar. Don\'t I know you from somewhere? Hmm...');
         setTimeout(() => {
-          $speech.text('Hey, that book looks familiar too. Where\'d you get it? ...');
+          $speech.text('Hey, that book looks familiar too. Where\'d you get it..?');
         }, 6000);
         setTimeout(() => {
-          $speech.text('Not a big talker ay? Well, anyways you should go into Ole Tom\'s Tavern here behind me and grab a coffee or an ale.');
+          $speech.text('Not a big talker ay? Anyways, you should grab a coffee or ale at Ole Thorin\'s Tavern here behind me.');
           $speech.append($button);
           $button.click(() => {
             $speech.text('Ok, let me buy you an ale. Something gives me the feeling that we\'ll find something to talk about...');
@@ -82,25 +82,25 @@ const tavernScene = () => {
     $('.speechBubble').css('top', '-250px');
     $('.speechBubble').css('position', 'absolute');
     $('.speechBubble').css('left', '200px');
-    $('.speechBubble').text('So you just woke up with no memory of how you got there? That certainly is strange my little friend.').show()
+    $('.speechBubble').text('So you just woke up with no memory of how you got here? That certainly is strange my little friend.').show()
   }, 1000);
   setTimeout(() => {
-    $('.speechBubble').text('And you say there were Skeleton Warriors all the way out here? Highly unlikely...')
+    $('.speechBubble').text('And you say there were skeleton warriors all the way out here? Highly unlikely...');
   }, 8000);
   setTimeout(() => {
-    $('.speechBubble').text('The only person who has ever been powerful enough to control the Skeleton race was the Dark Wizard, Gravewrick.')
+    $('.speechBubble').text('The only person who has ever been powerful enough to control the skeleton race was the Dark Wizard, Gravewrick.')
   },13500);
   setTimeout(() => {
-      $('.speechBubble').text('but he was banished to the shadow realm centuries ago. Don\'t you know this story? Every wizard learns of it during thier training.');
+      $('.speechBubble').text('But he was banished to the shadow realm centuries ago. Don\'t you know this story? Every wizard learns of it during their training.');
   },20000);
   setTimeout(() => {
-      $('.speechBubble').text('Where did you say you where from again? Ah, that\'s right the whole memory loss thing...');
+      $('.speechBubble').text('Where did you say you were from again? Ah, that\'s right. The whole memory loss thing...');
   },28000);
   setTimeout(() => {
-      $('.speechBubble').text('Well my little friend, it was nice hearing your story. Let me tell you this, If you follow the road east past the village you will find a swampy marsh...');
+      $('.speechBubble').text('Well my little friend, it was nice hearing your story. Let me tell you this: if you follow the road east past the village, you will find a dark forest...');
   },34000);
   setTimeout(() => {
-      $('.speechBubble').text('There you may find an old wizard named Altar. If the stories are true then he\'s certainly the wises wizard in this realm.');
+      $('.speechBubble').text('There you may find an old wizard named Altare. If the stories are true, then he is certainly the wisest wizard in this realm.');
   },45000);
   setTimeout(() => {
       $('.speechBubble').text('Go see if you can pay him a visit.');

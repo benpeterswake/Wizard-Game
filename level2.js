@@ -31,7 +31,7 @@ const startLevel2 = () => {
         }
         if($('#hero').position().left >= $(window).width()-50){
           localStorage.setItem('level2-completed','true');
-          alert('Level 1 part 2 completed! All your progress has been saved');
+          alert('Level 1 Part 2 completed! All your progress has been saved');
           $('.endArrow').hide();
           $('.info').hide();
           $('#hero').hide();
@@ -58,14 +58,14 @@ const bossConversation = () => {
   const $speech = $('<div>').addClass('speechBubble');
   setTimeout(() => {
     $('#mark').show()
-    $speech.text("Hello again, " + player.name + "! Ha! Look at you now! So small and weak! And to think that everyone believed you were the one to fulfill the prophecy! ...");
+    $speech.text("Hello again, " + player.name + "! Ha! Look at you now! So small and weak! And to think that everyone believed you were the one to fulfill the prophecy...");
     $div.prepend($speech);
     $div.append($boss);
     $('#game-board').append($div);
       console.log($('.boss').position().left);
   },100);
   setTimeout(() => {
-    $speech.text("You are not the one to bring me down my old friend...")
+    $speech.text("You are not the one to bring me down, old friend...")
   }, 8000);
   setTimeout(() => {
     $div.hide('slow');
@@ -75,7 +75,7 @@ const bossConversation = () => {
     $('#mark').hide();
   }, 13000);
   setTimeout(() => {
-    $('#level2text').text('Who was that?! What was he talking about?! What prophecy?').show();
+    $('#level2text').text('Who was that?! What was he talking about?! What prophecy?!').show();
   }, 14000);
   setTimeout(() => {
     $('#level2text').text('I need to get to that mountain village and see if I can get some help!');

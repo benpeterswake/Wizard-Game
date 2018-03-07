@@ -24,16 +24,16 @@ const startLevel4 = () => {
   localStorage.setItem('battle2-completed','false');//change to false
   localStorage.setItem('altar-convo-completed','false');
   const $level3Text = $('<div>').attr('id','level3text');
-  $level3Text.text('You follow the trail east for several hours...');
+  $level3Text.text('You follow the trail east for some time...');
   $('body').prepend($level3Text);
   setTimeout(() => {
-    $level3Text.text('..until you come to a dark swampy forest.');
+    $level3Text.text('...until you come to a dark, swampy forest.');
   }, 2500);
   setTimeout(() => {
     $level3Text.text('Something doesn\'t seem right...');
   }, 6500);
   setTimeout(() => {
-    $level3Text.text('Oh no, There\'s something charging at you!');
+    $level3Text.text('Oh no, there is something charging at you!');
   }, 8500);
   setTimeout(() => {
     $level3Text.text('Prepare to fight!');
@@ -65,7 +65,7 @@ const startLevel4 = () => {
   },26000)
   $(document).keydown(() => {
     if($('#hero').position().left >= ($( window ).width()-100) && localStorage.getItem('altar-convo-completed') === 'true'){
-      alert('level 1 part 4 completed! All your progress has been saved');
+      alert('Level 1 Part 4 completed! All your progress has been saved');
       localStorage.setItem('level4-completed','true');
       $('.endArrow').hide();
       $('.info').hide();
@@ -92,10 +92,10 @@ const startLevel4 = () => {
             left: "75%",
         }, 3000);
         setTimeout(() => {
-          $speech.text('Who dares to disturb my slumper?! Leave here at once!').show();
+          $speech.text('Who dares to disturb my slumber?! Leave here at once!').show();
         }, 4000);
         setTimeout(() => {
-          $speech.text('Wait what?! ... Is that.. is that you ' + localStorage.getItem('name') + '? This can not be... you... you died.. so long ago... This must be a hallucination?');
+          $speech.text('Wait what?! ...is that...is that you...' + localStorage.getItem('name') + '? This can not be...you...you died...so long ago... This must be a dream!');
         }, 9000);
         setTimeout(() => {
           $speech.text('What happened to you...?')
@@ -105,7 +105,7 @@ const startLevel4 = () => {
         $('#game-board').append($div);
         localStorage.setItem('altar-convo-completed','true');
         $button.on('click', () => {
-          $speech.text(localStorage.getItem('name') + ', my old friend. Could it really be you? Come with me, I think I can help to fill in some of the piece to this puzzle.');
+          $speech.text(localStorage.getItem('name') + ', my old friend. Could it really be you? Come with me, I think I can help fill you in on some of the missing pieces to this puzzle.');
           setTimeout(() => {
             $speech.hide();
             $div.animate({

@@ -32,20 +32,20 @@ const startGame = () => {
           $('body').prepend($div);
     }, 1500);
     setTimeout(() => {
-      $div.text('..with no memory of how you got there.');
+      $div.text('...with no memory of how you got there.');
     },3000);
     setTimeout(() => {
       $div.text('In the distance you see a forest and a mountain range...');
     },6500);
     setTimeout(() => {
-      $div.text('..Where are you? And what happened?!');
+      $div.text('...Where are you? And what happened?');
     },12500);
     setTimeout(() => {
       $div.text('You need to look around and see if you can find any clues...');
     },15500);
     setTimeout(() => {
       $div.hide('slow');
-      $('#mark').hide('slow');``
+      $('#mark').hide('slow');
       displayInfo();
       displayClues();
     },20500);
@@ -86,12 +86,12 @@ const displayClues = () => {
 const battle1 = () => {
   $('.how-to').hide();
   $('.start').show();
-  $('.start').text('Oh no, There\'s no more time to mess around!');
+  $('.start').text('Oh no, there\'s no more time to mess around!');
   setTimeout(() => {
-    $('.start').text('You hear something coming from the edge of the forrest!');
+    $('.start').text('You hear something coming from the edge of the forest!');
   },4000);
   setTimeout(() => {
-    $('.start').text('A pack of Skeleton Warriors are approaching and they don\'t look friendly!');
+    $('.start').text('A pack of Skeleton warriors are approaching and they don\'t look friendly!');
   },8000);
   setTimeout(() => {
     $('.start').hide();
@@ -122,10 +122,10 @@ const findBook = () => {
       $('.start').text('Inside the book, you find that most the pages are empty...').show();
     },3500);
     setTimeout(() => {
-      $('.start').text('...however you come arcoss a page with the header "Fireball"');
+      $('.start').text('...however, you come arcoss a page with the title "Fireball"');
     },8000);
     setTimeout(() => {
-      $('.start').text('As you read, you realize that you are already fimilar with the instructions...');
+      $('.start').text('As you read, you realize that you are already familiar with the instructions...');
     },12000);
     setTimeout(() => {
       $('.start').text('You decide to try to cast the spell...');
@@ -241,10 +241,10 @@ const useCharacter = () => {
                     $('.start').text('Woah, that was a close call!');
                   },2000);
                   setTimeout(() => {
-                    $('.start').text('None of this makes sense?!');
+                    $('.start').text('None of this makes sense!');
                   },4500);
                   setTimeout(() => {
-                    $('.start').text('Why are there Skeleton Warriors all the way out here?!');
+                    $('.start').text('Why are there Skeleton warriors all the way out here?');
                   },7000);
                   setTimeout(() => {
                     $('.start').text('You see a small mountain village in the distance...');

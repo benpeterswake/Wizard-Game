@@ -19,12 +19,12 @@ const startLevel5 = () => {
     }, 4000);
   setTimeout(() => {
     const $speech = $('<div>').addClass('speechBubble2');
-    $speech.text('Well... let me start from the beginning... You see, long ago, over a century ago, you and I held arms in countless heroic battles...');
+    $speech.text('Well... Let me start from the beginning... You see, over a century ago, you and I held arms in countless heroic battles...');
     setTimeout(() => {
-      $speech.text('We fought against the trynical force of Gravewich and his skeleton army... We were ');
+      $speech.text('We fought against the tyrannical forces of Gravewrick and his skeleton army...');
     }, 8000);
     setTimeout(() => {
-      $speech.text('Back then the world was a much different place...');
+      $speech.text('Back then the world was a much different place.');
     }, 8000);
     setTimeout(() => {
       $('html').fadeTo('slow', 0.3, function() {
