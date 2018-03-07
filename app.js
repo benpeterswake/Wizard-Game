@@ -1,5 +1,12 @@
 //Start game
 const startGame = () => {
+  const $audio = $('<audio>').attr('id','audio');
+  $audio.attr('src','audio/default.mp3');
+  $audio.attr('autoplay','true');
+  $audio.attr('loop','true');
+  $('html').append($audio);
+  let audio = document.getElementById("audio");
+  audio.volume = 0.5;
   $('#createPlayer').show('slow');
   $('#hero').hide();
   $('.endArrow').hide();
@@ -341,4 +348,5 @@ $(() => {
     startGame();
     useCharacter();
   }
+
 });

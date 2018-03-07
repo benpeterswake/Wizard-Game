@@ -29,8 +29,6 @@ const startLevel2 = () => {
         if($('#hero').position().left >= 400 && localStorage.getItem('boss-convo-completed') == 'false'){
           bossConversation();
         }
-        console.log($('#hero').position().left);
-        console.log($(window).width()-100);
         if($('#hero').position().left >= $(window).width()-50){
           localStorage.setItem('level2-completed','true');
           alert('Level 1 part 2 completed! All your progress has been saved');
@@ -48,6 +46,12 @@ const startLevel2 = () => {
   useFrostbolt();
 }
 const bossConversation = () => {
+  const $audio = $('<audio>').attr('id','audio');
+  $audio.attr('src','audio/alert.mp3');
+  $audio.attr('autoplay','true');
+  $('body').append($audio)
+  let audio = document.getElementById("audio");
+  audio.volume = 0.4;
   localStorage.setItem('boss-convo-completed', 'true')
   const $div = $('<div>').addClass('boss-container');
   const $boss = $('<img>').attr('src','images/boss.gif').addClass('boss');

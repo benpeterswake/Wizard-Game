@@ -1,4 +1,11 @@
 const startLevel4 = () => {
+  const $audio = $('<audio>').attr('id','audio');
+  $audio.attr('src','audio/coffee.mp3');
+  $audio.attr('autoplay','true');
+  $audio.attr('loop','true')
+  $('body').append($audio)
+  let audio = document.getElementById("audio");
+  audio.volume = 0.3;
   //Enter view with new background
   $('#hero').fadeIn();
   $('.heroImg').attr('src', 'images/hero.png');
