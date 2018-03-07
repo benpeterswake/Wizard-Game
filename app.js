@@ -299,21 +299,22 @@ const useCharacter = () => {
 
 
 $(() => {
-  if(localStorage.getItem('level4-completed') === 'true'){
-    startLevel5();
-  }else if(localStorage.getItem('level3-completed') === 'true'){
-    startLevel4();
-    useCharacter();
-  }else if(localStorage.getItem('level2-completed') === 'true'){
-    startLevel3();
-    useCharacter();
-
-  }else if(localStorage.getItem('level1-completed') === 'true'){
-    startLevel2();
-    useCharacter();
-  }else{
-    startGame();
-    useCharacter();
-  }
+   startLevel5();
+  // if(localStorage.getItem('level4-completed') === 'true'){
+  //   startLevel5();
+  // }else if(localStorage.getItem('level3-completed') === 'true'){
+  //   startLevel4();
+  //   useCharacter();
+  // }else if(localStorage.getItem('level2-completed') === 'true'){
+  //   startLevel3();
+  //   useCharacter();
+  //
+  // }else if(localStorage.getItem('level1-completed') === 'true'){
+  //   startLevel2();
+  //   useCharacter();
+  // }else{
+  //   startGame();
+  //   useCharacter();
+  // }
 
 });

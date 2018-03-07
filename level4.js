@@ -100,7 +100,7 @@ const startLevel4 = () => {
         setTimeout(() => {
           $speech.text('What happened to you...?')
           $speech.append($button);
-        }, 18000)s
+        }, 18000);
         $('#game-board').append($div);
         localStorage.setItem('altar-convo-completed','true');
         $button.on('click', () => {
