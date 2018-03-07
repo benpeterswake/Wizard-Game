@@ -59,7 +59,7 @@ const displayInfo = () => {
     $health.text('Health: ' + player.health);
     $controls.text('How to play:');
     // $attackbtn.text('Press A: (Attack) cast fireball');
-    $defendbtn.text('Use left and right Arrow keys to move');
+    $defendbtn.text('Use left and right arrow keys to move');
     $playbar.append($controls,$defendbtn)
     $infobar.append($name, $health);
     $('body').prepend($infobar, $playbar);
@@ -142,6 +142,7 @@ const useCharacter = () => {
   $(document).keydown(function(event){
     let $hero = $('#hero');
     let $board = $('#game-board');
+
     //If her is in the main area of screen
     if(($hero.css('left') > '0px') && ($hero.css('left') !==  (($( window ).width()-100)+'px'))){
       //hero1
@@ -169,7 +170,7 @@ const useCharacter = () => {
 
       // A key Attack with fireball
       if(event.which == "65"){
-        if($('.boss').position() != undefined || localStorage.getItem('level2-completed') === 'true'){
+        if($('.boss').position() != undefined || (localStorage.getItem('level2-completed') === 'true' && localStorage.getItem('level3-completed') === 'false') ){
           console.log('attack disabled');
         }else {
         if(localStorage.getItem('intructions-completed') === 'true'){
@@ -185,7 +186,11 @@ const useCharacter = () => {
             $(".attack").animate({
                 left: width,
             }, 1500);
-          if(localStorage.getItem('level1-completed') === null){
+          if(localStorage.getItem('level1-completed') === null || localStorage.getItem('level3-completed') === 'true'){
+            if(localStorage.getItem('level3-completed') === 'true'){
+              $('.fireball').css('width','60px');
+              $('.fireball').css('margin-left','30px');
+            }
           let checkattack = setInterval(function () {
             let delta = ($attack.width() + $(".enemyImg").width()) * 0.5 ;
             let x1 = $attack.offset().left;
@@ -285,211 +290,47 @@ const useCharacter = () => {
   });
 }
 
-
-
-const startLevel2 = () => {
-  //Enter view with new background
-  localStorage.setItem('boss-convo-completed', 'false')
-  $('#hero').fadeIn();
-  $('.heroImg').attr('src', 'images/herobook.png').addClass('herobook');
+const startLevel5 = () => {
   $('.endArrow').hide();
   $('#createPlayer').hide();
-  $('#mark').hide();
-  $('html').css('background', 'url(images/background2.png)');
-  $('#hero').css('left', '2%');
-  $('#hero').css('top','520px');
-  $('.enemy').css('margin-top', '373px');
-  //Display player info bar
-  player.name = localStorage.getItem('name');
-  displayInfo();
-  $('.how-to').hide();
-  const $level2Text = $('<div>').attr('id','level2text').addClass('start');
-    $level2Text.text('You walk for serveral hours...');
+  $('#hero').hide();
+  $('level3text').hide();
+  $('html').css('background', 'url(images/background3.jpg) no-repeat center');
+  $('html').css('background-size','cover');
+  $('html').css('height','100%');
+    $('html').animate({
+      marginTop:"-100px"
+    }, 4000);
   setTimeout(() => {
-    $level2Text.text('..until you come to an opening in the forest.');
-  }, 2500);
-  setTimeout(() =>{
-    $level2Text.hide();
-    $('.enemy').css('margin-top', '535px');
-  },5500);
-  $('body').prepend($level2Text);
-  $(document).keydown((event)=>{
-    if(event.which == 39){
-        if($('#hero').position().left >= 400 && localStorage.getItem('boss-convo-completed') == 'false'){
-          bossConversation();
-        }
-        console.log($('#hero').position().left);
-        console.log($(window).width()-100);
-        if($('#hero').position().left >= $(window).width()-50){
-          localStorage.setItem('level2-completed','true');
-          alert('Level 1 part 2 completed! All your progress has been saved');
-          $('.endArrow').hide();
-          $('.info').hide();
-          $('#hero').hide();
-          $('html').css('background', 'url(images/loading.gif) no-repeat center center');
-          $('html').css('background-color', 'rgb(25,31,38)');
-          setTimeout(() => {
-            window.location.reload(false);
-          },3500);
-        }
-    }
-  });
-  useFrostbolt();
-}
-const bossConversation = () => {
-  localStorage.setItem('boss-convo-completed', 'true')
-  const $div = $('<div>').addClass('boss-container');
-  const $boss = $('<img>').attr('src','images/boss.gif').addClass('boss');
-  const $speech = $('<div>').addClass('speechBubble');
-  setTimeout(() => {
-    $('#mark').show()
-    $speech.text("Hello again, " + player.name + "! Ha! Look at you now! So small and weak! And to think that everyone believed you were the one to fulfill the prophecy! ...");
-    $div.prepend($speech);
-    $div.append($boss);
-    $('#game-board').append($div);
-      console.log($('.boss').position().left);
-  },100);
-  setTimeout(() => {
-    $speech.text("You are not the one to bring me down my old friend...")
-  }, 8000);
-  setTimeout(() => {
-    $div.hide('slow');
+    const $speech = $('<div>').addClass('speechBubble2');
+    $speech.text('Well... let me start from the beginning... You see, long ago, over a century ago, you and I held arms in countless heroic battles...');
     setTimeout(() => {
-      $div.remove();
-    },200)
-    $('#mark').hide();
-  }, 13000);
-  setTimeout(() => {
-    $('#level2text').text('Who was that?! What was he talking about?! What prophecy?').show();
-  }, 14000);
-  setTimeout(() => {
-    $('#level2text').text('I need to get to that mountain village and see if I can get some help!');
-  }, 17000);
-  setTimeout(() => {
-    $('#level2text').hide('slow');
-    $('.endArrow').css('margin-top','-90px')
-    $('.endArrow').show();
-  }, 20000);
-}
-
-const useFrostbolt = () => {
-  let $hero = $('#hero');
-  let $board = $('#game-board');
-  $(document).keydown(function(event){
-    $hero.css('transform', 'scaleX(-1)');
-    let width = ("+=" + $( window ).width() + 'px');
-    let location = $hero.css('left');
-    $('#game-board .attack').eq(10).remove();
-  //S key secondary frostbolt
-    if(event.which == "83"){
-      if($('.boss').position() != undefined){
-      console.log('button disabled');
-    }else {
-      $hero.css('transform', 'scaleX(-1)');
-      let width = ("+=" + $( window ).width() + 'px');
-      let location = $hero.css('left');
-      $('#game-board .attack').eq(10).remove();
-      const $second = $('<div>').addClass('attack');
-      const $img = $('<img>').attr('src','images/frostbolt.png').addClass('frostbolt');
-        $second.append($img);
-        $board.prepend($second);
-        $second.css('margin-left', location);
-        $(".attack").animate({
-            left: width,
-        }, 1500);
-      }
-    }
-  });
-}
-
-const startLevel3 = () => {
-  //Enter view with new background
-  $('#hero').fadeIn();
-  $('.heroImg').attr('src', 'images/hero.png');
-  $('.heroImg').css('width', '110px');
-  $('.endArrow').hide();
-  $('#createPlayer').hide();
-  $('#mark').hide();
-  $('html').css('background', 'url(images/village.gif) no-repeat center');
-  $('html').css('background-size','cover');
-  $('#hero').css('left', '2%');
-  $('#hero').css('top','71%');
-  $('.enemy').css('margin-top', '373px');
-  //Display player info bar
-  player.name = localStorage.getItem('name');
-  displayInfo();
-  $('.how-to').hide();
-  localStorage.setItem('helper-convo-completed', 'false');
-  const $div = $('<div>').addClass('helper-container');
-  const $helper = $('<img>').addClass('helper').attr('src','images/helper.gif');
-  const $question = $('<img>').attr('src','images/question.gif').attr('id','question');
-  const $speech = $('<div>').addClass('speechBubble');
-  const $button = $('<button>').addClass('accept').text('Tell me more');
-  $speech.css('height','100px');
-  $speech.css('padding','20px')
-  $div.prepend($question);
-  $div.append($helper);
-  $('#game-board').append($div);
-  $(document).keydown((event) => {
-    if(event.which == 39){
-      console.log($('.helper').position().left);
-      if($('#hero').position().left >= ($('.helper-container').position().left -40) && localStorage.getItem('helper-convo-completed') === 'false'){
-        $question.hide();
-        $('.helper-container').addClass('talking');
-          $speech.text('Hello little wizard! You look fimiliar. Don\'t I know you from somewhere? Hmm...');
-        setTimeout(() => {
-          $speech.text('Hey, that book looks familiar too. Where\'d you get it? ...');
-        }, 6000);
-        setTimeout(() => {
-          $speech.text('Not a big talker ay? Well, anyways you should go into Ole Tom\'s Tavern here behind me and grab a coffee or an ale.');
-          $speech.append($button);
-          localStorage.setItem('helper-convo-completed', 'true');
-          $button.click(() => {
-            $speech.text('Ok, let me buy you an ale. Something gives me the feeling that we\'ll have a lot to talk about...');
-            setTimeout(() => {
-              $helper.hide();
-              $('#hero').hide();
-              $speech.hide();
-              $('html').css('background', 'url(images/loading.gif) no-repeat center center');
-              $('html').css('background-color', 'rgb(25,31,38)');
-            }, 5000);
-            setTimeout(() => {
-              tavernScene();
-            }, 7500);
-          });
-        }, 10000);
-        $div.prepend($speech);
-      }
-    }
-  });
-
-}
-const tavernScene = () => {
-  $('html').css('background', 'url(images/tavern.png) no-repeat center');
-  $('html').css('background-size','cover');
-  setTimeout(() => {
-    $('.speechBubble').css('top', '-250px');
-    $('.speechBubble').css('position', 'absolute');
-    $('.speechBubble').css('left', '200px');
-    $('.speechBubble').text('So you just woke up with no memory of how you got there? That certainly is strange my little friend.').show()
-  }, 1000);
-  setTimeout(() => {
-    $('.speechBubble').text('And you say there were Skeleton Warriors all the way out here? Highly unlikely...')
-  }, 8000);
-  setTimeout(() => {
-    $('.speechBubble').text('The only person who has ever been powerful enough to control the Skeleton race was the Dark Wizard, Gravewrick.')
-  },13500);
-  setTimeout(() => {
-      $('.speechBubble').text('but he was banished to the shadow realm centuries ago. Don\'t you know this story? Every wizard learns of it during thier training.');
-  },20000);
-  setTimeout(() => {
-      $('.speechBubble').text('Where did you say you where from again? Ah, that\'s right the whole memory loss thing...');
-  },28000);
-
+      $speech.text('Back then the world was a much different place...');
+    }, 8000);
+    setTimeout(() => {
+      $speech.text('Back then the world was a much different place...');
+    }, 8000);
+    setTimeout(() => {
+      $('html').fadeTo('slow', 0.3, function() {
+            $speech.hide();
+            $('html').animate({
+              marginTop:"100px"
+            }, 4000);
+            $(this).css('background-image', 'url(images/ending.png)');
+        }).fadeTo('slow', 1);
+    }, 12000)
+    $('#game-board').prepend($speech);
+  }, 1500);
 }
 
 $(() => {
-  if(localStorage.getItem('level2-completed') === 'true'){
+  if(localStorage.getItem('level4-completed') === 'true'){
+    startLevel5();
+    useCharacter();
+  }else if(localStorage.getItem('level3-completed') === 'true'){
+    startLevel4();
+    useCharacter();
+  }else if(localStorage.getItem('level2-completed') === 'true'){
     startLevel3();
     useCharacter();
 

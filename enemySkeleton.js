@@ -20,7 +20,11 @@ class Enemy {
       let delta = ($('#hero').width() + $(".enemyImg").width()) * 0.5 ;
       let x1 = $('#hero').offset().left;
       let y1 = $('#hero').offset().top;
-      let x2 = $(".enemyImg").offset().left;
+      if(localStorage.getItem('level3-completed') === 'true'){
+        var x2 = $(".enemyImg").offset().left+160;
+      }else{
+        var x2 = $(".enemyImg").offset().left+10;
+      }
       let y2 = $(".enemyImg").offset().top;
       if (
            x1 >= x2 - delta &&
@@ -28,8 +32,8 @@ class Enemy {
            y1 >= y2 - delta &&
            y1 <= y2 + delta
        ) {
-         let heroHit = ($('#hero').position().left - 50) + 'px';
-         $('#hero').css('left', heroHit);
+         // let heroHit = ($('#hero').position().left - 50) + 'px';
+         // $('#hero').css('left', heroHit);
          player.hit();
        }
     }, 10);

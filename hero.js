@@ -5,10 +5,12 @@ class Hero {
     this.health = 100;
   }
   hit(){
-    this.health -= 100
+    this.health -= 100;
     if(this.health <= 0){
         alert('You died... Returning to last save point');
-        window.location.reload();
+        $('.enemyImg').remove();
+        $('.healthBar').remove();
+        location.reload(false);
     }
   }
 }
