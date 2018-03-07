@@ -5,7 +5,7 @@ const startLevel4 = () => {
   $audio.attr('loop','true')
   $('body').append($audio)
   let audio = document.getElementById("audio");
-  audio.volume = 0.2;
+  audio.volume = 0.1;
   //Enter view with new background
   $('#hero').fadeIn();
   $('.heroImg').attr('src', 'images/hero.png');
@@ -100,8 +100,7 @@ const startLevel4 = () => {
         setTimeout(() => {
           $speech.text('What happened to you...?')
           $speech.append($button);
-        }, 18000)
-
+        }, 18000)s
         $('#game-board').append($div);
         localStorage.setItem('altar-convo-completed','true');
         $button.on('click', () => {
