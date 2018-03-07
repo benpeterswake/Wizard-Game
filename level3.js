@@ -6,7 +6,7 @@ const startLevel3 = () => {
   $audio.attr('loop','true')
   $('body').append($audio)
   let audio = document.getElementById("audio");
-  audio.volume = 0.2;
+  audio.volume = 0.1;
   //Enter view with new background
   $('#hero').fadeIn();
   $('.heroImg').attr('src', 'images/hero.png');
@@ -60,7 +60,7 @@ const startLevel3 = () => {
               $('#audio').attr('autoplay','true');
               $('#audio').attr('loop','true');
               let audio = document.getElementById("audio");
-              audio.volume = 0.6;
+              audio.volume = 0.3;
             }, 5000);
             setTimeout(() => {
               tavernScene();
@@ -122,7 +122,7 @@ const exitTaven = () => {
   $('#audio').attr('src','audio/snow.mp3');
   $('#audio').attr('autoplay','true');
   let audio = document.getElementById("audio");
-  audio.volume = 0.2;
+  audio.volume = 0.1;
   $('#audio').attr('loop','true');
   $('html').css('background', 'url(images/village.gif) no-repeat center');
   $('html').css('background-size','cover');

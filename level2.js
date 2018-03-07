@@ -51,7 +51,7 @@ const bossConversation = () => {
   $audio.attr('autoplay','true');
   $('body').append($audio)
   let audio = document.getElementById("audio");
-  audio.volume = 0.4;
+  audio.volume = 0.3;
   localStorage.setItem('boss-convo-completed', 'true')
   const $div = $('<div>').addClass('boss-container');
   const $boss = $('<img>').attr('src','images/boss.gif').addClass('boss');
