@@ -28,7 +28,7 @@ const startGame = () => {
       $div.text('..with no memory of how you got there.');
     },3000);
     setTimeout(() => {
-      $div.text('In the distance you see a forrest and a mountain range...');
+      $div.text('In the distance you see a forest and a mountain range...');
     },6500);
     setTimeout(() => {
       $div.text('..Where are you? And what happened?!');
@@ -317,6 +317,7 @@ const startLevel5 = () => {
               marginTop:"100px"
             }, 4000);
             $(this).css('background-image', 'url(images/ending.png)');
+
         }).fadeTo('slow', 1);
     }, 12000)
     $('#game-board').prepend($speech);
@@ -326,7 +327,6 @@ const startLevel5 = () => {
 $(() => {
   if(localStorage.getItem('level4-completed') === 'true'){
     startLevel5();
-    useCharacter();
   }else if(localStorage.getItem('level3-completed') === 'true'){
     startLevel4();
     useCharacter();

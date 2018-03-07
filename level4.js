@@ -11,8 +11,9 @@ const startLevel4 = () => {
   $('html').css('height', '95%')
   $('html').css('background-color','black');
   $('#hero').css('left', '5%');
-  $('#hero').css('top','79%');
-  $('.enemy').css('margin-top', '43%');
+  $('#hero').css('top','80%');//
+  $('.enemy').addClass('level4')
+  $('.enemy').css('margin-top', '43%');//
   localStorage.setItem('battle2-completed','false');//change to false
   localStorage.setItem('altar-convo-completed','false');
   const $level3Text = $('<div>').attr('id','level3text');
@@ -32,11 +33,11 @@ const startLevel4 = () => {
   }, 10500);
   setTimeout(() => {
     $level3Text.hide();
-    skully.generateEnemy(7000);
-    skully2.generateEnemy(9000);
-    skully3.generateEnemy(11000);
-    skully4.generateEnemy(12000);
-    skully5.generateEnemy(13000);
+    skully.generateEnemy(6000);
+    skully2.generateEnemy(7000);
+    skully3.generateEnemy(9000);
+    skully4.generateEnemy(10000);
+    skully5.generateEnemy(12000);
     skully6.generateEnemy(14000);
     skully.img.attr('src','images/enemy3.gif');
     skully2.img.attr('src','images/enemy3.gif');
@@ -73,7 +74,7 @@ const startLevel4 = () => {
         const $div = $('<div>').addClass('altar');
         const $altar = $('<img>').attr('src','images/altar.gif').addClass('altarImg');
         const $speech = $('<div>').addClass('altarBubble');
-        const $button = $('<button>').addClass('accept').text('Tell Altar what happened');
+        const $button = $('<button>').addClass('accept').text('I can\'t remember');
         $speech.css('height','100px');
         $speech.css('padding','20px');
         $speech.hide();
@@ -97,7 +98,7 @@ const startLevel4 = () => {
         $('#game-board').append($div);
         localStorage.setItem('altar-convo-completed','true');
         $button.on('click', () => {
-          $speech.text(localStorage.getItem('name') + ', my old friend. Is that really you? Come with me, I think I can help to fill in some of the piece to this puzzle.');
+          $speech.text(localStorage.getItem('name') + ', my old friend. Could it really be you? Come with me, I think I can help to fill in some of the piece to this puzzle.');
           setTimeout(() => {
             $speech.hide();
             $div.animate({

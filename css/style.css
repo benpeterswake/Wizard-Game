@@ -164,12 +164,12 @@ color:lightgreen;
   .helper-container{
     position: absolute;
     z-index: -1;
-    margin-top: 1%;
+    margin-top: 1.1%;
     width: 150px!important;
     left:50%;
   }
   .talking{
-    margin-top: -3.9%!important;
+    margin-top: -3.2%!important;
   }
 }
 .boss-container{
@@ -222,7 +222,7 @@ color:lightgreen;
   border-radius:0.5em;
   width:200px;
 }
-@media(max-height:900px){
+@media(max-height:910px){
   .altar{
     position: absolute;
     width:115px;
@@ -238,5 +238,9 @@ color:lightgreen;
     text-align:center;
     border-radius:0.5em;
     width:200px;
+  }
+  .level4{
+    margin-top:42%!important;
+
   }
 }

@@ -75,12 +75,12 @@ const bossConversation = () => {
   }, 14000);
   setTimeout(() => {
     $('#level2text').text('I need to get to that mountain village and see if I can get some help!');
-  }, 17000);
+  }, 19000);
   setTimeout(() => {
     $('#level2text').hide('slow');
     $('.endArrow').css('margin-top','-90px')
     $('.endArrow').show();
-  }, 20000);
+  }, 24000);
 }
 
 const useFrostbolt = () => {
