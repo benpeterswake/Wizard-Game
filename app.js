@@ -96,14 +96,14 @@ const battle1 = () => {
   setTimeout(() => {
     $('.start').hide();
     $('.how-to').show();
-    skully.generateEnemy(10000);
-    skully2.generateEnemy(14000);
-    skully3.generateEnemy(16000);
-    skully4.generateEnemy(17000);
-    skully5.generateEnemy(18000);
-    skully6.generateEnemy(20000);
-    skully7.generateEnemy(23000);
-    skully8.generateEnemy(25000);
+    skully.generateEnemy(8000);
+    skully2.generateEnemy(10000);
+    skully3.generateEnemy(11000);
+    skully4.generateEnemy(13000);
+    skully5.generateEnemy(14000);
+    skully6.generateEnemy(15000);
+    skully7.generateEnemy(17000);
+    skully8.generateEnemy(20000);
   },12000);
 }
 

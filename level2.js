@@ -75,7 +75,7 @@ const bossConversation = () => {
     $('#mark').hide();
   }, 13000);
   setTimeout(() => {
-    $('#level2text').text('Who was that?! What was he talking about?! What prophecy?!').show();
+    $('#level2text').text('Who was that?! What was he talking about?!').show();
   }, 14000);
   setTimeout(() => {
     $('#level2text').text('I need to get to that mountain village and see if I can get some help!');
