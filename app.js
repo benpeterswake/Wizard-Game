@@ -315,5 +315,4 @@ $(() => {
     startGame();
     useCharacter();
   }
-
 });
