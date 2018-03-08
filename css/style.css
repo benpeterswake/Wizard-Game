@@ -222,6 +222,13 @@ color:lightgreen;
   border-radius:0.5em;
   width:200px;
 }
+.end{
+  color:white;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: -20px;
+}
 @media(max-height:910px){
   .altar{
     position: absolute;

@@ -58,7 +58,7 @@ const bossConversation = () => {
   const $speech = $('<div>').addClass('speechBubble');
   setTimeout(() => {
     $('#mark').show()
-    $speech.text("Hello again, " + player.name + "! Ha! Look at you now! So small and weak! And to think that everyone believed you were the one to fulfill the prophecy...");
+    $speech.text("Hello again, " + player.name + "! Ha! Look at you now! So small and weak! And to think that everyone believed you were the one to defeat me...");
     $div.prepend($speech);
     $div.append($boss);
     $('#game-board').append($div);
