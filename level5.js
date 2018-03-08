@@ -27,7 +27,7 @@ const startLevel5 = () => {
       $speech.text('Amongst our classmates was another promising wizard named, Ademare...');
     }, 15000);
     setTimeout(() => {
-      $speech.text('but it didn\'t take long to realize that he had a disturbing side to him... He had a fasination with death...');
+      $speech.text('but it didn\'t take long to realize that he had a disturbing side to him...');
     }, 21000);
     setTimeout(() => {
       $speech.text('and as time went on it only got worse... ');
