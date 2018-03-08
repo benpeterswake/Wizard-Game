@@ -8,7 +8,7 @@ The approach I took was to split the game into different scenes.
 Live link: benpeterwake.github.io
 
 Instructions:
-Use left and right arrow keys to remove.
+Use left and right arrow keys to move.
 Use A key to cast a fireball.
 
 Unsolved Problems:
