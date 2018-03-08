@@ -6,7 +6,7 @@ const startGame = () => {
   $audio.attr('loop','true');
   $('html').append($audio);
   let audio = document.getElementById("audio");
-  audio.volume = 0.5;
+  audio.volume = 0.4;
   $('#createPlayer').show('slow');
   $('#hero').hide();
   $('.endArrow').hide();
